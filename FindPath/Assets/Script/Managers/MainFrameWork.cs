@@ -30,8 +30,12 @@ namespace Managers
             
             _managers.Add(Create<GridDataLoader>());
             _managers.Add(Create<InventoryManager>());
+            _managers.Add(Create<AssetManager>());
+            _managers.Add(Create<AdsManager>());
+            
             _managers.Add(CreateGameObject<UIManager>());
             _managers.Add(CreateGameObject<SkillManager>());
+            _managers.Add(CreateGameObject<CustomObjectPool>());
 
             Create<ObjectFactory>();
 
@@ -39,7 +43,7 @@ namespace Managers
             
             _managers.ForEach(x => x.InitManager());
             
-            _gameManager.StartGame();
+            _gameManager.StartOutGame();
         }
 
         private T Create<T>() where T : class, new()

@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using GameUtilities;
 using Managers;
 using UniRx;
 using UnityEngine;
@@ -12,40 +13,32 @@ namespace FindPath
         [Inject] private readonly IObjectResolver _objectResolver;
         [Inject] private readonly UIManager _uiManager;
         [Inject] private readonly SkillManager _skillManager;
+        [Inject] private readonly GameManager _gameManager;
+        [Inject] private readonly InventoryManager _inventoryManager;
+        [Inject] private readonly AdsManager _adsManager;
         
         private MapManager _mapManager;
         private CharacterManager _characterManager;
-        private BattleCamera _battleCamera;
+        private MainCameraFollower _mainCameraFollower;
         private UIBattleView _uiBattleView;
         
         // 게임 플레이시 체크
         public bool IsStarted => _isStarted.Value;
         private readonly ReactiveProperty<bool> _isStarted = new(false);
         
-        public bool IsPlaying => _isPlaying.Value;
-        private readonly ReactiveProperty<bool> _isPlaying = new(false);
-        
         public readonly ReactiveProperty<float> PlayingTime = new(0f);
         public readonly IntReactiveProperty RemainTurnCount = new(0);
-        public readonly ReactiveProperty<int> StageClearCount = new(0);
         
         private CancellationTokenSource _cts = new();
         
         // 스킬
         private SkillController _skillController;
+
+        public ReactiveProperty<int> CurrentScore { get; private set; } = new(0);
         
-        // ConfigValue
-        private const float MinTurnCountOffset = 2f;
-        private const float PlayTimeOffset = 3f;
-        
-        /// <summary>
-        /// 매니저 클래스 등을 생성 및 초기화
-        /// </summary>
         public void InitManager()
         {
-            CreateWithInitMapManager();
-            CreateWithInitCharacterManager();
-            CreateSkillController();
+            
         }
         
         private void CreateWithInitMapManager()
@@ -75,7 +68,17 @@ namespace FindPath
         /// <summary>
         /// 전투 관련 생성
         /// </summary>
-        public void CreateBattle()
+        public void EnterBattle()
+        {
+            CreateWithInitMapManager();
+            CreateWithInitCharacterManager();
+            CreateSkillController();
+            
+            CurrentScore.Value = 0;
+            StartBattle().Forget();
+        }
+
+        private async UniTask StartBattle()
         {
             CreateMap();
             CreatePlayer();
@@ -84,7 +87,7 @@ namespace FindPath
             InitCharacterPosition();
             
             // UI생성
-            CreateBattleView();
+            await CreateBattleView();
             
             // 카메라 설정
             InitBattleCamera();
@@ -93,21 +96,22 @@ namespace FindPath
             InitGameParameter();
             
             // 게임 시작
-            StartBattle();
+            _isStarted.Value = true;
         }
 
-        /// <summary>
-        /// 게임 시작
-        /// </summary>
-        private void StartBattle()
+        public void ExitBattle()
         {
-            _isStarted.Value = true;
+            _mapManager?.InitializeMap();
+            _characterManager?.Init();
+            if (_mainCameraFollower != null)
+            {
+                _mainCameraFollower.InitPosition();    
+            }
         }
 
         private void Update()
         {
             if (!_isStarted.Value) return;
-            if (!_isPlaying.Value) return;
             
             PlayingTime.Value -= Time.deltaTime;
             if (PlayingTime.Value <= 0)
@@ -127,13 +131,40 @@ namespace FindPath
         private void GameClear()
         {
             _isStarted.Value = false;
-            _isPlaying.Value = false;
             
             _uiManager.DestroyView(_uiBattleView);
             _uiBattleView = null;
-            
-            StageClearCount.Value += 1;
-            RestartGame().Forget();
+
+            CalculateBattleScore();
+            NextStage().Forget();
+        }
+
+        /// <summary>
+        /// 스테이지 클리어 점수 정산
+        /// </summary>
+        private void CalculateBattleScore()
+        {
+            CurrentScore.Value += (int)PlayingTime.Value * DataConfig.TimeScore;
+            CurrentScore.Value += DataConfig.StageClearScore;
+        }
+
+        /// <summary>
+        /// 최고 점수 저장
+        /// </summary>
+        private void SaveBestScore()
+        {
+            var preScore = PlayerPrefsTool.GetPlayerPrefs(PlayerPrefsKeyNames.BestScore, 0);
+            if (preScore < CurrentScore.Value)
+            {
+                PlayerPrefsTool.SetPlayerPrefs(PlayerPrefsKeyNames.BestScore, CurrentScore.Value);
+            }
+        }
+
+        private async UniTask NextStage()
+        {
+            _inventoryManager.SaveData();
+            await ShowGameClearView();
+            StartBattle().Forget();
         }
 
         /// <summary>
@@ -141,26 +172,32 @@ namespace FindPath
         /// </summary>
         private void GameOver()
         {
-            return;
-            
             _isStarted.Value = false;
-            _isPlaying.Value = false;
             
             _uiManager.DestroyView(_uiBattleView);
             _uiBattleView = null;
             
-            RestartGame().Forget();
+            SaveBestScore();
+            GoToOutGame().Forget();
         }
 
-        private async UniTask RestartGame()
+        private async UniTask GoToOutGame()
         {
+            _inventoryManager.SaveData();
             await ShowGameOverView();
-            CreateBattle();
+            _gameManager.StartOutGame();
+            _adsManager.ShowRewardedAd(null, null);
+        }
+
+        private async UniTask ShowGameClearView()
+        {
+            var view = await _uiManager.CreateView<UIGameOverView>();
+            await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
 
         private async UniTask ShowGameOverView()
         {
-            var view = _uiManager.CreateView<UIGameOverView>();
+            var view = await _uiManager.CreateView<UIGameOverView>();
             await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
 
@@ -169,7 +206,7 @@ namespace FindPath
         /// </summary>
         private void CreateMap()
         {
-            _mapManager.Init();
+            _mapManager.InitializeMap();
             _mapManager.CreateMap();
         }
 
@@ -181,12 +218,10 @@ namespace FindPath
             var pathCount = _mapManager.GetTotalMovePathCount();
             if (pathCount != 0)
             {
-                PlayingTime.SetValueAndForceNotify(pathCount * PlayTimeOffset);
+                PlayingTime.SetValueAndForceNotify(pathCount * DataConfig.PlayTimeOffset);
             }
 
-            RemainTurnCount.SetValueAndForceNotify(Mathf.FloorToInt(_mapManager.GetMinTurnCount() * MinTurnCountOffset));
-            
-            StageClearCount.SetValueAndForceNotify(0);
+            RemainTurnCount.SetValueAndForceNotify(Mathf.FloorToInt(_mapManager.GetMinTurnCount() * DataConfig.MinTurnCountOffset));
         }
 
         /// <summary>
@@ -212,38 +247,37 @@ namespace FindPath
         /// <summary>
         /// 전투 메인 뷰 생성
         /// </summary>
-        private void CreateBattleView()
+        private async UniTask CreateBattleView()
         {
-            _uiBattleView = _uiManager.CreateView<UIBattleView>(UIViewNames.UIBattleView);
+            _uiBattleView = await _uiManager.CreateView<UIBattleView>(UIViewNames.UIBattleView);
             _uiBattleView.SetData(OnClickArrowButton);
         }
 
         private void InitBattleCamera()
         {
-            if (_battleCamera == null)
+            if (_mainCameraFollower == null)
             {
-                var cameraObj = GameObject.FindGameObjectWithTag(TagNames.BattleCamera);
+                var cameraObj = GameObject.FindGameObjectWithTag(TagNames.MainCameraFollower);
                 if (cameraObj == null)
                 {
                     Debug.LogError("Not Found BattleCamera");
                     return;
                 }
             
-                if (!cameraObj.TryGetComponent<BattleCamera>(out var battleCamera))
+                if (!cameraObj.TryGetComponent<MainCameraFollower>(out var battleCamera))
                 {
                     Debug.LogError("Not Found BattleCamera Component");
                     return;
                 }
             
-                _battleCamera = battleCamera;    
+                _mainCameraFollower = battleCamera;    
             }
             
-            _battleCamera.SetTarget(_characterManager.GetCharacterTransform());
+            _mainCameraFollower.SetTarget(_characterManager.GetCharacterTransform());
         }
 
         private void OnClickArrowButton(Vector2Int direction)
         {
-            _isPlaying.Value = true;
             _characterManager.SetDirection(direction);
         }
 
@@ -255,7 +289,7 @@ namespace FindPath
         public void AddTurnCount()
         {
             RemainTurnCount.Value -= 1;
-            if (RemainTurnCount.Value <= 0)
+            if (RemainTurnCount.Value < 0)
             {
                 GameOver();
             }
@@ -280,13 +314,15 @@ namespace FindPath
 
         public void CollectCoinAt(Vector2 position)
         {
-            _mapManager.CollectCoinAt(position);
+            if (!_mapManager.TryCollectCoinAt(position)) return;
+            
+            _inventoryManager.IncreaseCoins(1);
+            CurrentScore.Value += DataConfig.CoinScore;
         }
 
         public void TryUseSkill(SkillType skillType)
         {
             if (!IsStarted) return;
-            if (!IsPlaying) return;
             
             _skillController.TryUseSkill(skillType);
         }
@@ -321,20 +357,6 @@ namespace FindPath
         public void RemoveObstacleAt(Vector2 position, Vector2 characterSize)
         {
             _mapManager.RemoveObstacleAt(position, characterSize);
-        }
-        
-        /// <summary>
-        /// 스킬 구매 가능한지 확인
-        /// </summary>
-        /// <returns></returns>
-        public bool IsPurchasableSkill(SkillType skillType)
-        {
-            return _skillController.IsPurchasableSkill(skillType);
-        }
-
-        public void TryPurchaseSkill(SkillType skillType)
-        {
-            _skillController.TryPurchaseSkill(skillType);
         }
     }
 }

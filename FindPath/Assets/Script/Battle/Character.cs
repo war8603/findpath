@@ -36,27 +36,9 @@ namespace FindPath
 
         public void Update()
         {
-            if (!_battleManager.IsPlaying) return;
             if (!_battleManager.IsStarted) return;
-            
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                SetDirection(new Vector2(0, 1));
-            }
-            else if (Input.GetKeyUp(KeyCode.S))
-            {
-                SetDirection(new Vector2(0, -1));
-            }
-            else if (Input.GetKeyUp(KeyCode.A))
-            {
-                SetDirection(new Vector2(-1, 0));
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                SetDirection(new Vector2(1, 0));
-            }
-            
             if (_direction == Vector2.zero) return;
+            
             if (_moveType == MoveType.Walk)
             {
                 DoWalk();    
@@ -143,6 +125,18 @@ namespace FindPath
         private void ChangeDirection()
         {
             _direction *= -1;
+            SetFlipX();
+        }
+
+        /// <summary>
+        /// 캐릭터 이미지 반전
+        /// </summary>
+        private void SetFlipX()
+        {
+            if (_direction.x != 0)
+            {
+                _spriteRenderer.flipX = !(_direction.x > 0);    
+            }    
         }
 
         /// <summary>
@@ -170,6 +164,7 @@ namespace FindPath
             
             _battleManager.AddTurnCount();
             _direction = direction;
+            SetFlipX();
         }
 
         public void DecreaseWalkSpeed(float ratio)

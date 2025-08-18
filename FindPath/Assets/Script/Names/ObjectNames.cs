@@ -4,13 +4,11 @@ namespace FindPath
 {
     public class ObjectNames
     {
-        public const string CellPath = "Cells/";
         public const string NormalCellName = "NormalCell";
         public const string ObstacleCellName = "ObstacleCell";
         public const string StartCellName = "StartCell";
         public const string EndCellName = "EndCell";
         
-        public const string GridDataPath = "GridData/";
         public const string GridDataName = "GridDataCollection";
         
         public const string ObjectPath = "Objects/";
@@ -22,5 +20,7 @@ namespace FindPath
         
         public const string UIPath = "UI/";
         
+        public const string ConfigPath = "Config/";
+        public const string SkillConfig = "SkillConfig";
     }
 }

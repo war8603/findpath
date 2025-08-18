@@ -5,7 +5,7 @@ namespace FindPath
 {
     public class CharacterManager
     {
-        [Inject] private readonly ObjectFactory _objectFactory;
+        [Inject] private readonly CustomObjectPool _objectPool;
         private Character _character;
         
         public void Init()
@@ -30,7 +30,7 @@ namespace FindPath
 
         public void CreateCharacter()
         {
-            var obj = _objectFactory.LoadGameObject(ObjectNames.CharacterPrefabName);
+            var obj = _objectPool.GetGameObject(ObjectNames.CharacterPrefabName);
             if (!obj.TryGetComponent<Character>(out var character))
             {
                 Debug.LogError("Character object not found");

@@ -14,14 +14,16 @@ namespace Managers
             
         }
         
-        public void StartGame()
+        public void StartOutGame()
         {
-            StartBattle();
+            _battleManager.ExitBattle();
+            _outGameManager.EnterOutGame();
         }
 
         public void StartBattle()
         {
-            _battleManager.CreateBattle();
+            _outGameManager.ExitOutGame();
+            _battleManager.EnterBattle();
         }
     }
 }

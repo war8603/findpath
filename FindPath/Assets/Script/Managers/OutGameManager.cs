@@ -1,14 +1,15 @@
+using Cysharp.Threading.Tasks;
 using Extensions;
 using FindPath;
 using UnityEngine;
-using UnityEngine.Rendering;
 using VContainer;
 
 namespace Managers
 {
     public class OutGameManager : MonoBehaviour, IBaseManager
     {
-        [Inject] private readonly ObjectFactory _objectFactory;
+        [Inject] private readonly CustomObjectPool _objectPool;
+        [Inject] private readonly UIManager _uiManager;
         
         private GameObject _outGameRoot;
         private static readonly Vector2Int LeftBottomPosition = new Vector2Int(-2, -2);
@@ -17,11 +18,29 @@ namespace Managers
         private const int OutGameMapSizeX = 5;
         private const int OutGameMapSizeY = 5;
         
+        private UIOutGameView _outGameView;
+        private GameObject _character;
+        private MainCameraFollower _mainCameraFollower;
+        
         public void InitManager()
         {
-            // CreateRoot();
-            // CreateOutMap();
-            // CreateOutPlayer();
+            
+        }
+
+        public void EnterOutGame()
+        {
+            InitBattleCamera();
+            CreateRoot();
+            CreateMap();
+            CreateCharacter();
+            CreateUIView().Forget();
+        }
+
+        public void ExitOutGame()
+        {
+            DestroyRoot();
+            DestroyCharacter();
+            DestroyView();
         }
 
         private void CreateRoot()
@@ -32,13 +51,66 @@ namespace Managers
             }
         }
 
-        private void CreateOutPlayer()
+        private void DestroyRoot()
         {
-            var characterObj = _objectFactory.LoadGameObject(ObjectNames.OutCharacterPrefabName);
-            characterObj.transform.position = Vector3.zero;
+            if (_outGameRoot == null) return;
+            
+            Destroy(_outGameRoot);
+        }
+
+        private void CreateCharacter()
+        {
+            if (_character != null)
+            {
+                DestroyCharacter();
+            }
+            _character = _objectPool.GetGameObject(ObjectNames.OutCharacterPrefabName);
+            _character.transform.position = Vector3.zero;
         }
         
-        private void CreateOutMap()
+        private void InitBattleCamera()
+        {
+            if (_mainCameraFollower == null)
+            {
+                var cameraObj = GameObject.FindGameObjectWithTag(TagNames.MainCameraFollower);
+                if (cameraObj == null)
+                {
+                    Debug.LogError("Not Found BattleCamera");
+                    return;
+                }
+            
+                if (!cameraObj.TryGetComponent<MainCameraFollower>(out var mainCameraFollower))
+                {
+                    Debug.LogError("Not Found BattleCamera Component");
+                    return;
+                }
+            
+                _mainCameraFollower = mainCameraFollower;    
+            }
+
+            _mainCameraFollower.InitPosition();
+        }
+
+        private void DestroyCharacter()
+        {
+            if (_character == null) return;
+            
+            Destroy(_character);   
+        }
+
+        private async UniTaskVoid CreateUIView()
+        {
+            _outGameView = await _uiManager.CreateView<UIOutGameView>(UIViewNames.UIOutGameView);
+        }
+
+        private void DestroyView()
+        {
+            if (_outGameView == null) return;
+            
+            _uiManager.DestroyView(_outGameView);
+        }
+        
+        private void CreateMap()
         {
             var startPosition = LeftBottomPosition;
             for (var i = 0; i < OutGameMapSizeX; i++)
@@ -54,7 +126,7 @@ namespace Managers
                         cellName = ObjectNames.ObstacleCellName;
                     }
 
-                    var cellObj = _objectFactory.LoadCellGameObject(cellName);
+                    var cellObj = _objectPool.GetGameObject(cellName);
                     cellObj.InitParent(_outGameRoot.transform);
                     cellObj.transform.position = startPosition + new Vector2(i, j);
                 }

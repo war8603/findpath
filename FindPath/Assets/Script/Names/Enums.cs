@@ -16,4 +16,10 @@ namespace FindPath
         Wall,
         Obstacle,
     }
+
+    public enum CostType
+    {
+        Coin,
+        Ads,
+    }
 }

@@ -1,14 +1,17 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Extensions;
 using FindPath;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Managers
 {
     public class UIManager : MonoBehaviour, IBaseManager
     {
-        [Inject] private readonly ObjectFactory _objectFactory;
+        [Inject] private readonly AssetManager _assetManager;
+        [Inject] private readonly IObjectResolver _objectResolver;
         
         private Transform _mainTransform;
         private Transform _systemTransform;
@@ -51,10 +54,11 @@ namespace Managers
             _systemViews.Clear();
         }
 
-        public T CreateView<T>(string viewName = "") where T : MonoBehaviour
+        public async UniTask<T> CreateView<T>(string viewName = "") where T : MonoBehaviour
         {
             var prefabName = string.IsNullOrEmpty(viewName) ? typeof(T).Name : viewName;
-            var obj = _objectFactory.LoadUIObject(prefabName);
+            var obj = await _assetManager.LoadGameObjectAsync(prefabName);
+            _objectResolver.InjectGameObject(obj);
             if (!obj.TryGetComponent<UIView>(out var uiView))
             {
                 Debug.LogError("UIView not found");
