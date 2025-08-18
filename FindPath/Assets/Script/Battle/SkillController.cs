@@ -24,6 +24,11 @@ namespace FindPath
 
         public void Init()
         {
+            InitSkillData();
+        }
+
+        private void InitSkillData()
+        {
             foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))
             {
                 // 스킬 사용 시간 초기화
@@ -33,9 +38,9 @@ namespace FindPath
                 }
 
                 // 스킬 구매 횟수 초기화
-                if (!_skillPurchaseCount.TryAdd(skillType, new ReactiveProperty<int>(DataConfig.GetDefaultCount(skillType))))
+                if (!_skillPurchaseCount.TryAdd(skillType, new ReactiveProperty<int>(_skillManager.SkillConfig.GetDefaultCount(skillType))))
                 {
-                    _skillPurchaseCount[skillType].Value = DataConfig.GetDefaultCount(skillType);
+                    _skillPurchaseCount[skillType].Value = _skillManager.SkillConfig.GetDefaultCount(skillType);
                 }
             }
         }
@@ -43,7 +48,6 @@ namespace FindPath
         private void Update()
         {
             if (!_battleManager.IsStarted) return;
-            if (!_battleManager.IsPlaying) return;
 
             UpdateSkillDuration();
         }
@@ -103,7 +107,7 @@ namespace FindPath
             
             // 사용 처리
             _skillManager.DecreaseSkillCount(skillType,1);
-            _usedSkillDuration[skillType].Value = DataConfig.GetCoolTime(skillType);
+            _usedSkillDuration[skillType].Value = _skillManager.SkillConfig.GetCoolTime(skillType);
             switch (skillType)
             {
                 case SkillType.RevealFog:
@@ -129,17 +133,6 @@ namespace FindPath
         public ReactiveProperty<float> GetSkillCoolTimeProperty(SkillType skillType)
         {
             return _usedSkillDuration[skillType];
-        }
-
-        public bool IsPurchasableSkill(SkillType skillType)
-        {
-            return _skillPurchaseCount[skillType].Value > 0 && _inventoryManager.IsEnoughCost(DataConfig.GetCost(skillType));
-        }
-
-        public void TryPurchaseSkill(SkillType skillType)
-        {
-            _skillPurchaseCount[skillType].Value--;
-            _inventoryManager.DecreaseCoins(DataConfig.GetCost(skillType));
         }
     }
 }

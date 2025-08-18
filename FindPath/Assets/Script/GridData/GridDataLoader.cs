@@ -6,7 +6,7 @@ namespace FindPath
 {
     public class GridDataLoader : IBaseManager
     {
-        [Inject] private readonly ObjectFactory _objectFactory;
+        [Inject] private readonly AssetManager _assetManager;
         
         private GridDataAsset _gridDataAsset;
 
@@ -21,8 +21,10 @@ namespace FindPath
         
         public GridData LoadRandomGridData()
         {
-            _gridDataAsset = _objectFactory.LoadResource<GridDataAsset>(ObjectNames.GridDataPath, ObjectNames.GridDataName);
-            var minTurnCount = 3;
+            _gridDataAsset = _assetManager.LoadScriptableObject<GridDataAsset>(ObjectNames.GridDataName);
+            if (_gridDataAsset == null) return null;
+            
+            const int minTurnCount = 3;
 
             var gridDataGroup = _gridDataAsset.groups.Find(x => x.minTurnCount == minTurnCount);
             return gridDataGroup.grids[Random.Range(0, gridDataGroup.grids.Count)];

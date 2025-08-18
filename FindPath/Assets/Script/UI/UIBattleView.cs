@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VContainer;
 
@@ -22,7 +23,7 @@ namespace FindPath
         [SerializeField] private TMP_Text _coinText;
         [SerializeField] private TMP_Text _playTimeText;
         [SerializeField] private TMP_Text _remainTurnCount;
-        [SerializeField] private TMP_Text _stageClearCountText;
+        [SerializeField] private TMP_Text _scoreText;
 
         [SerializeField] private List<UIBattleSkillButtonView> _skillButtonViews;
 
@@ -40,9 +41,8 @@ namespace FindPath
         {
             _onclickArrowButtonCallback = onClickArrowButtonCallback;
 
-            InitStageClearCount();
+            InitScore();
 
-            SetClearCountData();
             SetCoinData();
             SetPlayTimeData();
             SetTurnCountData();
@@ -51,9 +51,12 @@ namespace FindPath
             SetSkillButtonState();
         }
 
-        private void InitStageClearCount()
+        private void InitScore()
         {
-            _stageClearCountText.text = _battleManager.StageClearCount.ToString();
+            _battleManager.CurrentScore.ObserveEveryValueChanged(property => property.Value).Subscribe(value =>
+            {
+                _scoreText.text = _battleManager.CurrentScore.ToString();
+            }).AddTo(this);
         }
 
         private void SetCoinData()
@@ -86,13 +89,6 @@ namespace FindPath
                     _remainTurnCount.text = value.ToString();
                     _remainTurnCount.color = value > 2 ? Color.white : Color.red;
                 }).AddTo(this);
-        }
-
-        private void SetClearCountData()
-        {
-            _battleManager.StageClearCount.ObserveEveryValueChanged(property => property.Value)
-                .Subscribe(value => _stageClearCountText.text = value.ToString())
-                .AddTo(this);
         }
 
         private void SetSkillButtonState()

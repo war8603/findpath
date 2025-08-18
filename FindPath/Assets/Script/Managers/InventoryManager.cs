@@ -14,7 +14,7 @@ namespace FindPath
             _coinProperty.Value += amount;
         }
 
-        public void DecreaseCoins(int amount)
+        public void DecreaseCoin(int amount)
         {
             _coinProperty.Value -= amount;
         }

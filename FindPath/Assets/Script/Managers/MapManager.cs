@@ -5,11 +5,11 @@ using VContainer;
 
 namespace FindPath
 {
-    public class GridInfo
+    public class CellInfo
     {
         public GridCell Cell;
         public GameObject Obj;
-        public bool IsLight;
+        public GameObject LightGameObject;
     }
 
     public class CoinInfo
@@ -21,24 +21,24 @@ namespace FindPath
     public class MapManager
     {
         [Inject] private readonly GridDataLoader _loadMap;
-        [Inject] private readonly ObjectFactory _objectFactory;
+        [Inject] private readonly CustomObjectPool _objectPool;
         [Inject] private readonly InventoryManager _inventoryManager;
         
         private GridData _map;
-        private GridInfo[,] _mapCellInfos;
+        private CellInfo[,] _mapCellInfos;
         
         private GameObject _mapRoot;
         private GameObject _coinRoot;
         private float _playTimeOffset = 2f;
-        
-        private HashSet<(int x, int y)> _obstacles = new HashSet<(int, int)>();
-        private List<CoinInfo> _coinInfos = new List<CoinInfo>();
+
+        private readonly HashSet<(int x, int y)> _obstacles = new();
+        private readonly List<CoinInfo> _coinInfos = new();
         private (int x, int y) _endPosition;
         private GameObject _fog;
 
         private (int x, int y) _nullPosition = new(-1, -1);
 
-        public void Init()
+        public void InitializeMap()
         {
             var gridData = _map;
             if (gridData != null)
@@ -46,13 +46,54 @@ namespace FindPath
                 _map = null;
             }
 
-            if (_mapRoot != null)
+            if (_mapRoot == null)
             {
-                Object.Destroy(_mapRoot);
+                _mapRoot = new GameObject("MapRoot");
             }
-            _mapRoot = new GameObject("MapRoot");
-            
+
+            ClearCellInfos();
+            ClearCoinInfos();
+            ClearObstacles();
+            ClearFog();
+        }
+
+        private void ClearFog()
+        {
+            if (_fog != null)
+            {
+                _objectPool.ReleaseGameObject(_fog);
+            }
+
+            _fog = null;
+        }
+
+        private void ClearObstacles()
+        {
             _obstacles.Clear();
+        }
+
+        private void ClearCellInfos()
+        {
+            if (_mapCellInfos != null)
+            {
+                foreach (var cell in _mapCellInfos)
+                {
+                    _objectPool.ReleaseGameObject(cell.Obj);
+                    if (cell.LightGameObject != null)
+                    {
+                        _objectPool.ReleaseGameObject(cell.LightGameObject);
+                    }
+                }    
+            }
+        }
+
+        private void ClearCoinInfos()
+        {
+            foreach (var coinInfo in _coinInfos)
+            {
+                _objectPool.ReleaseGameObject(coinInfo.Object);
+            }
+            _coinInfos.Clear();
         }
 
         public void CreateMap()
@@ -65,12 +106,12 @@ namespace FindPath
         private void CreateGridMap()
         {
             _map = _loadMap.LoadRandomGridData();
-            _mapCellInfos = new GridInfo[_map.SizeX, _map.SizeY];
+            _mapCellInfos = new CellInfo[_map.SizeX, _map.SizeY];
             
             foreach (var cell in _map.Cells)
             {
                 var cellPosition = cell.Position;
-                _mapCellInfos[cellPosition.x, cellPosition.y] = new GridInfo
+                _mapCellInfos[cellPosition.x, cellPosition.y] = new CellInfo
                 {
                     Cell = new GridCell()
                     {
@@ -87,9 +128,9 @@ namespace FindPath
                 // Cell Object 생성
                 var cellObj = cell switch
                 {
-                    _ when cell.Position == _map.StartPosition => _objectFactory.LoadCellGameObject(ObjectNames.StartCellName, _mapRoot.transform),
-                    _ when cell.Position == _map.EndPosition => _objectFactory.LoadCellGameObject(ObjectNames.EndCellName, _mapRoot.transform),
-                    _ => _objectFactory.LoadCellGameObject(ObjectNames.NormalCellName, _mapRoot.transform),
+                    _ when cell.Position == _map.StartPosition => _objectPool.GetGameObject(ObjectNames.StartCellName, _mapRoot.transform),
+                    _ when cell.Position == _map.EndPosition => _objectPool.GetGameObject(ObjectNames.EndCellName, _mapRoot.transform),
+                    _ => _objectPool.GetGameObject(ObjectNames.NormalCellName, _mapRoot.transform),
                 };
                 cellObj.transform.position = (Vector2)cell.Position;
                 _mapCellInfos[cell.Position.x, cell.Position.y].Obj = cellObj;
@@ -98,7 +139,7 @@ namespace FindPath
 
         private void CreateFog()
         {
-            _fog = _objectFactory.LoadGameObject(ObjectNames.FogPrefabName, _mapRoot.transform);
+            _fog = _objectPool.GetGameObject(ObjectNames.FogPrefabName, _mapRoot.transform);
             _fog.transform.localScale = new Vector3(_map.SizeX, _map.SizeY, 1);
             _fog.transform.position = new Vector3(_map.SizeX / 2f - 0.5f, _map.SizeY / 2f - 0.5f, 0);
         }
@@ -126,10 +167,20 @@ namespace FindPath
             var coinCount = DataConfig.CoinCount;
             while (coinCount > 0)
             {
-                coinCount--;
                 var randomIndex = Random.Range(0, normalCells.Count);
                 var cell = normalCells[randomIndex];
-                var coin = _objectFactory.LoadGameObject(ObjectNames.CoinPrefabName, _coinRoot.transform);
+                if (_map.StartPosition.x == cell.x && _map.StartPosition.y == cell.y)
+                {
+                    continue;
+                }
+
+                if (_map.EndPosition.x == cell.x && _map.EndPosition.y == cell.y)
+                {
+                    continue;
+                }
+                
+                coinCount--;
+                var coin = _objectPool.GetGameObject(ObjectNames.CoinPrefabName, _coinRoot.transform);
                 coin.transform.position = new Vector2(cell.x, cell.y);
                 normalCells.RemoveAt(randomIndex);
                 
@@ -251,16 +302,16 @@ namespace FindPath
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
-        public void CollectCoinAt(Vector2 position)
+        public bool TryCollectCoinAt(Vector2 position)
         {
             var positionToInt = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
             var coinInfo = _coinInfos.Find(x => x.Position == positionToInt);
-            if (coinInfo == null) return;
-                
-            Object.Destroy(coinInfo.Object);
+            if (coinInfo == null) return false;
+
+            _objectPool.ReleaseGameObject(coinInfo.Object);
             _coinInfos.Remove(coinInfo);
-            
-            _inventoryManager.IncreaseCoins(1);
+
+            return true;
         }
 
         /// <summary>
@@ -276,12 +327,12 @@ namespace FindPath
             }
             
             // 이미 생성되어있다면 리턴
-            if (_mapCellInfos[position.x, position.y].IsLight) return;
+            if (_mapCellInfos[position.x, position.y].LightGameObject != null) return;
             
             // 조명 생성
-            var light = _objectFactory.LoadGameObject(ObjectNames.LightPrefabName, _mapRoot.transform);
+            var light = _objectPool.GetGameObject(ObjectNames.LightPrefabName, _mapRoot.transform);
             light.transform.position = (Vector2)position;
-            _mapCellInfos[position.x, position.y].IsLight = true;
+            _mapCellInfos[position.x, position.y].LightGameObject = light;
         }
 
         /// <summary>
@@ -325,12 +376,11 @@ namespace FindPath
                 
             if (_mapCellInfos[position.x, position.y].Obj.name == ObjectNames.ObstacleCellName) return;
             
-            Object.Destroy(_mapCellInfos[position.x, position.y].Obj);
-            var cellObj = _objectFactory.LoadCellGameObject(ObjectNames.ObstacleCellName, _mapRoot.transform);
+            _objectPool.ReleaseGameObject(_mapCellInfos[position.x, position.y].Obj);
+            
+            var cellObj = _objectPool.GetGameObject(ObjectNames.ObstacleCellName, _mapRoot.transform);
             _mapCellInfos[position.x, position.y].Obj = cellObj;
             cellObj.transform.position = (Vector2)position;
-            
-            Debug.Log($"Change Obstacle cell ({position.x},{position.y})");
         }
 
         /// <summary>
@@ -361,10 +411,10 @@ namespace FindPath
             // 장애물 제거
             _mapCellInfos[collisionObstacle.x, collisionObstacle.y].Cell.IsObstacle = false;
             _obstacles.Remove(collisionObstacle);
-            Object.Destroy(_mapCellInfos[collisionObstacle.x, collisionObstacle.y].Obj);
+            _objectPool.ReleaseGameObject(_mapCellInfos[collisionObstacle.x, collisionObstacle.y].Obj);
 
             // 일반 타일 교체
-            var cellObj = _objectFactory.LoadCellGameObject(ObjectNames.NormalCellName, _mapRoot.transform);
+            var cellObj = _objectPool.GetGameObject(ObjectNames.NormalCellName, _mapRoot.transform);
             _mapCellInfos[collisionObstacle.x, collisionObstacle.y].Obj = cellObj;
             cellObj.transform.position = new Vector2(collisionObstacle.x, collisionObstacle.y);
         }
