@@ -107,9 +107,11 @@ public class GridMapGeneratorWindow : EditorWindow
                 {
                     break;
                 }
+                // 시작 위치, 종료 위치 지정
                 var start = setting.GetRandomStart();
                 var end = setting.GetRandomEnd();
 
+                // grid 데이터 생성
                 var grid = GridDataGenerator.CreateGridData(
                     start,
                     end,

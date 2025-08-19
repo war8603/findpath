@@ -36,7 +36,7 @@ namespace Managers
                 Debug.Log($"MobileAds 초기화 완료");
                 
                 // 배너 광고 로드
-                LoadBannerAd();
+                //LoadBannerAd();
 
                 // 보상형 광고 로드
                 LoadRewardedAd();

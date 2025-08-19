@@ -6,5 +6,6 @@ namespace FindPath
     {
         public const string UIBattleView = "UIBattleView";
         public const string UIOutGameView = "UIOutGameView";
+        public const string UILibraryPopupView = "UILibraryPopupView";
     }
 }
