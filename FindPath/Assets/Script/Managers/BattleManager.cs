@@ -132,6 +132,7 @@ namespace FindPath
         /// </summary>
         private void GameClear()
         {
+            _stageClearCount++;
             _isStarted.Value = false;
             
             _uiManager.DestroyView(_uiBattleView);
