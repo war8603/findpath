@@ -10,6 +10,7 @@ namespace FindPath
         public const string EndCellName = "EndCell";
         
         public const string GridDataName = "GridDataCollection";
+        public const string DifficultyDataName = "DifficultyDataConfig";
         
         public const string ObjectPath = "Objects/";
         public const string OutCharacterPrefabName = "OutCharacter";

@@ -28,7 +28,7 @@ namespace Managers
             _managers.Add(CreateGameObject<BattleManager>());
             _managers.Add(CreateGameObject<OutGameManager>());
             
-            _managers.Add(Create<GridDataLoader>());
+            _managers.Add(Create<DataManager>());
             _managers.Add(Create<InventoryManager>());
             _managers.Add(Create<AssetManager>());
             _managers.Add(Create<AdsManager>());

@@ -20,7 +20,7 @@ namespace FindPath
     
     public class MapManager
     {
-        [Inject] private readonly GridDataLoader _loadMap;
+        [Inject] private readonly DataManager _loadMap;
         [Inject] private readonly CustomObjectPool _objectPool;
         [Inject] private readonly InventoryManager _inventoryManager;
         
@@ -96,16 +96,16 @@ namespace FindPath
             _coinInfos.Clear();
         }
 
-        public void CreateMap()
+        public void CreateMap(int stageClearCount)
         {
-            CreateGridMap();
+            CreateGridMap(stageClearCount);
             CreateFog();
             CreateCoin();
         }
 
-        private void CreateGridMap()
+        private void CreateGridMap(int stageClearCount)
         {
-            _map = _loadMap.LoadRandomGridData();
+            _map = _loadMap.LoadGridDataByStageClearCount(stageClearCount);
             _mapCellInfos = new CellInfo[_map.SizeX, _map.SizeY];
             
             foreach (var cell in _map.Cells)

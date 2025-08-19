@@ -6,11 +6,12 @@ using VContainer;
 
 namespace FindPath
 {
-    public class GridDataLoader : IBaseManager
+    public class DataManager : IBaseManager
     {
         [Inject] private readonly AssetManager _assetManager;
         
         private GridDataAsset _gridDataAsset;
+        private DifficultyDataConfig _difficultyDataConfig;
 
         private GridDataAsset GetGridDataAsset()
         {
@@ -24,6 +25,20 @@ namespace FindPath
                 Debug.LogError($"Can't not load {ObjectNames.GridDataName}");
             }
             return _gridDataAsset;
+        }
+
+        private DifficultyDataConfig GetDifficultyDataConfig()
+        {
+            if (_difficultyDataConfig == null)
+            {
+                _difficultyDataConfig = _assetManager.LoadScriptableObject<DifficultyDataConfig>(ObjectNames.DifficultyDataName);    
+            }
+
+            if (_difficultyDataConfig == null)
+            {
+                Debug.LogError($"Can't not load {ObjectNames.GridDataName}");
+            }
+            return _difficultyDataConfig;
         }
         
         public void InitManager()
@@ -51,14 +66,24 @@ namespace FindPath
             }
             return gridDataList;
         }
+
+        public GridData LoadGridDataByStageClearCount(int stageClearCount)
+        {
+            var difficultyDataConfig = GetDifficultyDataConfig();
+            var difficultyData = difficultyDataConfig.DifficultyDataList.FirstOrDefault(x => x.MaxStageClearCount >= stageClearCount);
+            if (difficultyData != null)
+            {
+                return LoadGridData(difficultyData.MinTurnCount);    
+            }
+            var lastDifficultyData = difficultyDataConfig.DifficultyDataList.Last();
+            return LoadGridData(lastDifficultyData.MinTurnCount);
+        }
         
-        public GridData LoadRandomGridData()
+        private GridData LoadGridData(int turnCount)
         {
             var gridDataAsset = GetGridDataAsset();
             
-            const int minTurnCount = 3;
-
-            var gridDataGroup = gridDataAsset.groups.Find(x => x.minTurnCount == minTurnCount);
+            var gridDataGroup = gridDataAsset.groups.Find(x => x.minTurnCount == turnCount);
             return gridDataGroup.grids[Random.Range(0, gridDataGroup.grids.Count)];
         }
     }

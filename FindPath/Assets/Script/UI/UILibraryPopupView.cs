@@ -10,7 +10,7 @@ namespace FindPath
 {
     public class UILibraryPopupView : UIMainView, IEnhancedScrollerDelegate
     {
-        [Inject] private readonly GridDataLoader _loadMap;
+        [Inject] private readonly DataManager _dataManager;
         [Inject] private readonly IObjectResolver _objectResolver;
         [Inject] private readonly UIManager _uiManager;
 
@@ -27,7 +27,7 @@ namespace FindPath
         
         public void ShowView()
         {
-            _gridDataList = _loadMap.GetGridDataList();
+            _gridDataList = _dataManager.GetGridDataList();
             _scroller.Delegate = this;
         }
 
@@ -50,7 +50,7 @@ namespace FindPath
 
         public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
         {
-            var gridCount = _loadMap.GetGroupCount();
+            var gridCount = _dataManager.GetGroupCount();
             var rowItemCount = gridCount % 2 == 0 ? gridCount / 2 : gridCount / 2 + 1;
             
             if (dataIndex >= rowItemCount)

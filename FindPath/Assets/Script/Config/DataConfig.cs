@@ -10,7 +10,7 @@ namespace FindPath
         public const int TimeScore = 1;
         public const int StageClearScore = 100;
         
-        public const float MinTurnCountOffset = 2f;
-        public const float PlayTimeOffset = 3f;
+        public const float MinTurnCountOffset = 3f;
+        public const float PlayTimeOffset = 2f;
     }
 }
