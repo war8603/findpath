@@ -14,7 +14,6 @@ public static class GridDataGenerator
         var rand = new System.Random();
         int attempts = 0, maxAttempts = 1000;
         var subAttempts = 0;
-        var subMaxAttempts = 100;
         while (attempts++ < maxAttempts)
         {
             var grid = CreateEmptyGrid(startPosition, endPosition, sizeX, sizeY);
@@ -79,13 +78,13 @@ public static class GridDataGenerator
         var queue = new Queue<(Vector2 pos, Vector2 dir, int turns, List<Vector2> path)>();
         var visited = new Dictionary<(int, int, int, int), int>();
 
-        foreach (var d in Directions)
+        foreach (var direction in Directions)
         {
-            var next = start + d;
+            var next = start + direction;
             if (!IsValid(grid, (int)next.x, (int)next.y)) continue;
 
-            queue.Enqueue((next, d, 0, new List<Vector2> { start, next }));
-            visited[((int)next.x, (int)next.y, d.x, d.y)] = 0;
+            queue.Enqueue((next, direction, 0, new List<Vector2> { start, next }));
+            visited[((int)next.x, (int)next.y, direction.x, direction.y)] = 0;
         }
 
         List<Vector2> bestPath = null;
@@ -104,24 +103,31 @@ public static class GridDataGenerator
                 continue;
             }
 
-            foreach (var nd in Directions)
+            foreach (var direction in Directions)
             {
-                var next = pos + nd;
+                var next = pos + direction;
                 if (!IsValid(grid, (int)next.x, (int)next.y)) continue;
 
-                var newTurns = turns + (nd != dir ? 1 : 0);
-                var state = ((int)next.x, (int)next.y, nd.x, nd.y);
+                var newTurns = turns + (direction != dir ? 1 : 0);
+                var state = ((int)next.x, (int)next.y, direction.x, direction.y);
                 if (visited.ContainsKey(state) && visited[state] <= newTurns) continue;
 
                 visited[state] = newTurns;
                 var newPath = new List<Vector2>(path) { next };
-                queue.Enqueue((next, nd, newTurns, newPath));
+                queue.Enqueue((next, direction, newTurns, newPath));
             }
         }
 
         return new PathResult { Path = bestPath, Turns = minTurns };
     }
 
+    /// <summary>
+    /// 맵을 벗어나거나, 장애물이면 갈 수 없음
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
     private static bool IsValid(GridData grid, int x, int y)
     {
         return x >= 0 && y >= 0 && x < grid.SizeX && y < grid.SizeY && !grid.IsObstacle(x, y);

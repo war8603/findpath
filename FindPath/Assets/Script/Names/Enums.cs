@@ -22,4 +22,12 @@ namespace FindPath
         Coin,
         Ads,
     }
+
+    public enum CellType
+    {
+        Start,
+        End,
+        Obstacle,
+        Normal,
+    }
 }
