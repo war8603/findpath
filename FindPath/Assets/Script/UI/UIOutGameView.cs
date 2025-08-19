@@ -13,7 +13,7 @@ namespace FindPath
     {
         [Inject] private readonly GameManager _gameManager;
         [Inject] private readonly UIManager _uiManager;
-        [Inject] private readonly GridDataLoader _loadMap;
+        [Inject] private readonly DataManager _loadMap;
         
         [SerializeField] private Button _startButton;
         [SerializeField] private TMP_Text _coin;

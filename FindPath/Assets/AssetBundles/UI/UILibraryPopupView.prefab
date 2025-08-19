@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594cd16e10a772c4c9a92b25d58e722e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rowItem: {fileID: 0}
+  _rowItem: {fileID: 2986170242191940286, guid: f4d2697b11b5c4543b4596194ecde243, type: 3}
   _scroller: {fileID: 1923486244607288430}
   _closeButton: {fileID: 2922646949297297380}
 --- !u!1 &1773929799451295174

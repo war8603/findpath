@@ -28,6 +28,7 @@ namespace FindPath
         
         public readonly ReactiveProperty<float> PlayingTime = new(0f);
         public readonly IntReactiveProperty RemainTurnCount = new(0);
+        private int _stageClearCount;
         
         private CancellationTokenSource _cts = new();
         
@@ -75,6 +76,7 @@ namespace FindPath
             CreateSkillController();
             
             CurrentScore.Value = 0;
+            _stageClearCount = 0;
             StartBattle().Forget();
         }
 
@@ -207,7 +209,7 @@ namespace FindPath
         private void CreateMap()
         {
             _mapManager.InitializeMap();
-            _mapManager.CreateMap();
+            _mapManager.CreateMap(_stageClearCount);
         }
 
         /// <summary>
