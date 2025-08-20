@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24d0818cfd6bc7449be9775b592a457b
+    m_Address: UIStageClearView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 417030d768e7a614a8e9191e5544e266
     m_Address: UIBattleView
     m_ReadOnly: 0

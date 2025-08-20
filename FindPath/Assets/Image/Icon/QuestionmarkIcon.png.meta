@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 036337e456e16d2498349756de854a4a
+guid: 706145ec088bcef46a9805deff58dc58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2413755186424921491
-    second: Fx_Material_RankupArrow_0
+      213: 6143896527639743493
+    second: QuestionmarkIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fx_Material_RankupArrow_0
+      name: QuestionmarkIcon_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 86
-        height: 90
+        x: 199
+        y: 88
+        width: 610
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39d3d9dad816f7120800000000000000
-      internalID: 2413755186424921491
+      spriteID: 50c09b21751834550800000000000000
+      internalID: 6143896527639743493
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Fx_Material_RankupArrow_0: 2413755186424921491
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

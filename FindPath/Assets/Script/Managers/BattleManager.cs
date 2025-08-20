@@ -16,6 +16,7 @@ namespace FindPath
         [Inject] private readonly GameManager _gameManager;
         [Inject] private readonly InventoryManager _inventoryManager;
         [Inject] private readonly AdsManager _adsManager;
+        [Inject] private readonly DataManager _dataManager;
         
         private MapManager _mapManager;
         private CharacterManager _characterManager;
@@ -139,7 +140,17 @@ namespace FindPath
             _uiBattleView = null;
 
             CalculateBattleScore();
+            SaveStageClearData();
             NextStage().Forget();
+        }
+
+        /// <summary>
+        /// 클리어 한 gridIndex 저장
+        /// </summary>
+        private void SaveStageClearData()
+        {
+            var gridIndex =_mapManager.GetGridIndex();
+            _dataManager.SaveStageClearData(gridIndex);
         }
 
         /// <summary>
@@ -166,7 +177,7 @@ namespace FindPath
         private async UniTask NextStage()
         {
             _inventoryManager.SaveData();
-            await ShowGameClearView();
+            await ShowStageClearView();
             StartBattle().Forget();
         }
 
@@ -192,15 +203,15 @@ namespace FindPath
             _adsManager.ShowRewardedAd(null, null);
         }
 
-        private async UniTask ShowGameClearView()
+        private async UniTask ShowStageClearView()
         {
-            var view = await _uiManager.CreateView<UIGameOverView>();
+            var view = await _uiManager.CreateView<UIStageClearView>(UIViewNames.UIStageClearView);
             await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
 
         private async UniTask ShowGameOverView()
         {
-            var view = await _uiManager.CreateView<UIGameOverView>();
+            var view = await _uiManager.CreateView<UIGameOverView>(UIViewNames.UIGameOverView);
             await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
 

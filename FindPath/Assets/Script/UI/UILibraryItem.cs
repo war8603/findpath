@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Extensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ namespace FindPath
     {
         [SerializeField] private Image _backImage;
         [SerializeField] private UILibraryCellItem _cellItemPrefab;
+        [SerializeField] private TMP_Text _clearCountText;
+        [SerializeField] private GameObject _notClearObj;
         
         private GameObject _root;
 
@@ -32,8 +35,20 @@ namespace FindPath
             return _root.transform;
         }
         
-        public void SetData(GridData gridData)
+        public void SetData(GridData gridData, int clearCount)
         {
+            _clearCountText.text = clearCount.ToString();
+            // 모두 비활성화
+            _items.ForEach(x => x.gameObject.SetActive(false));
+            
+            if (clearCount == 0)
+            {
+                _notClearObj.SetActive(true);
+                return;
+            }
+            
+            _notClearObj.SetActive(false);
+            
             CreateRoot();
             
             var size = _backImage.GetComponent<RectTransform>().sizeDelta.x;
@@ -42,9 +57,6 @@ namespace FindPath
             var root = GetRoot();
             var cellSize = Mathf.Max(gridData.SizeX, gridData.SizeY);
             offset += new Vector2(size / cellSize / 2f, size / cellSize / 2f);
-
-            // 모두 비활성화
-            _items.ForEach(x => x.gameObject.SetActive(false));
 
             // 부족한 수량만큼 생성
             if (_items.Count < gridData.Cells.Count)

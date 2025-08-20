@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-
+using Cysharp.Threading.Tasks;
 
 
 [System.Serializable]
@@ -97,6 +97,7 @@ public class GridMapGeneratorWindow : EditorWindow
         var asset = ScriptableObject.CreateInstance<GridDataAsset>();
         asset.groups = new List<GridDataGroup>();
         var breakCount = 10000;
+        var gridIndex = 0;
         foreach (var setting in settings)
         {
             var maxCount = setting.numberOfMaps;
@@ -107,12 +108,14 @@ public class GridMapGeneratorWindow : EditorWindow
                 {
                     break;
                 }
+                
                 // 시작 위치, 종료 위치 지정
                 var start = setting.GetRandomStart();
                 var end = setting.GetRandomEnd();
 
                 // grid 데이터 생성
                 var grid = GridDataGenerator.CreateGridData(
+                    gridIndex,
                     start,
                     end,
                     setting.sizeX,
@@ -125,6 +128,8 @@ public class GridMapGeneratorWindow : EditorWindow
                 }
                 else
                 {
+                    Debug.Log($"✅ Success with {grid.MinTurnCount} turns");
+                    gridIndex++;
                     maxCount--;
                     var existingGroup = asset.groups.Find(x => x.minTurnCount == grid.MinTurnCount);
                     if (existingGroup == null)

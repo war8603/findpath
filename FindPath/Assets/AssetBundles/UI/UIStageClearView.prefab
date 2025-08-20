@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8987455105260431379}
   - component: {fileID: 4466226143269175267}
-  - component: {fileID: 5015754262866139953}
+  - component: {fileID: 7945356238444275458}
   m_Layer: 5
-  m_Name: UIGameOverView
+  m_Name: UIStageClearView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889679754357666995}
   m_CullTransparentMesh: 1
---- !u!114 &5015754262866139953
+--- !u!114 &7945356238444275458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 889679754357666995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a36cd61301e24864f97a01af495c1aae, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aa516c970d1eca439891cb241711652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 2
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over..
+  m_text: Stage Clear!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 778567e62151641289bfc00a8f08ed35, type: 2}
   m_sharedMaterial: {fileID: 8765599652227817620, guid: 778567e62151641289bfc00a8f08ed35, type: 2}
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283585269
-  m_fontColor: {r: 0.9622642, g: 0.32226774, b: 0.32226774, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
