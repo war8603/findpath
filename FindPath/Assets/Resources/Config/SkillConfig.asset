@@ -15,17 +15,25 @@ MonoBehaviour:
   _skillConfigData:
   - SkillType: 0
     CostType: 1
+    DefaultCount: 0
     MaxCount: 1
     PurchaseCost: 1
+    CoolTime: 5
   - SkillType: 1
     CostType: 1
+    DefaultCount: 0
     MaxCount: 1
     PurchaseCost: 1
+    CoolTime: 5
   - SkillType: 2
     CostType: 0
+    DefaultCount: 0
     MaxCount: 2
     PurchaseCost: 10
+    CoolTime: 3
   - SkillType: 3
     CostType: 0
+    DefaultCount: 0
     MaxCount: 2
     PurchaseCost: 5
+    CoolTime: 10
