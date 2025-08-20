@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 [Serializable]
 public class GridData
 {
+    public int GridIndex;
     public List<GridCell> Cells = new();
     public int SizeX;
     public int SizeY;

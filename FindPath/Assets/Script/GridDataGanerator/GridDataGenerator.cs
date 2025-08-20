@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public static class GridDataGenerator
@@ -9,47 +10,57 @@ public static class GridDataGenerator
         new Vector2Int(1, 0), new Vector2Int(-1, 0)
     };
 
-    public static GridData CreateGridData(Vector2Int startPosition, Vector2Int endPosition, int sizeX, int sizeY, int minTurnCount)
+    public static GridData CreateGridData(int gridIndex, Vector2Int startPosition, Vector2Int endPosition, int sizeX, int sizeY, int minTurnCount)
     {
         var rand = new System.Random();
-        int attempts = 0, maxAttempts = 1000;
-        var subAttempts = 0;
-        while (attempts++ < maxAttempts)
+        var attempts = 0;
+        var maxAttempts = 1000;
+        var grid = CreateEmptyGrid(startPosition, endPosition, sizeX, sizeY);
+
+        // 랜덤한 위치에 장애물 생성
+        var randomObstacleCells = new List<Vector2>();
+        var randomCellCount = 5;
+        while (randomCellCount > 0)
         {
-            var grid = CreateEmptyGrid(startPosition, endPosition, sizeX, sizeY);
-            var result = FindBestPath(grid, startPosition, endPosition);
-
-            while (result.Path != null && result.Turns < minTurnCount && subAttempts++ < maxAttempts)
+            var randomCell = new Vector2(rand.Next(0, sizeX), rand.Next(0, sizeY));
+            if (!randomCell.Equals(startPosition) && !randomCell.Equals(endPosition)
+                                                  && !randomObstacleCells.Contains(randomCell))
             {
-                List<Vector2> candidates = new(result.Path);
-                candidates.Remove(startPosition);
-                candidates.Remove(endPosition);
+                randomCellCount--;
+                randomObstacleCells.Add(randomCell);
+                grid.GetCell((int)randomCell.x, (int)randomCell.y).IsObstacle = true;
+            }    
+        }
+        
+        var result = FindBestPath(grid, startPosition, endPosition);
+        while (result.Path != null && result.Turns < minTurnCount && attempts++ < maxAttempts)
+        {
+            List<Vector2> candidates = new(result.Path);
+            candidates.Remove(startPosition);
+            candidates.Remove(endPosition);
+            if (candidates.Count == 0)
+                break;
+            
+            var toBlock = candidates[rand.Next(candidates.Count)];
+            var cell = grid.GetCell((int)toBlock.x, (int)toBlock.y);
+            cell.IsObstacle = true;
 
-                if (candidates.Count == 0)
-                    break;
+            result = FindBestPath(grid, startPosition, endPosition);
 
-                var toBlock = candidates[rand.Next(candidates.Count)];
-                var cell = grid.GetCell((int)toBlock.x, (int)toBlock.y);
-                cell.IsObstacle = true;
-
-                result = FindBestPath(grid, startPosition, endPosition);
-
-                if (result.Path == null)
-                {
-                    cell.IsObstacle = false;
-                }
-            }
-
-            if (result.Path != null && result.Turns >= minTurnCount)
+            if (result.Path == null)
             {
-                Debug.Log($"✅ Success with {result.Turns} turns");
-                grid.MinTurnCount = result.Turns;
-                grid.PathCount = result.Path.Count;
-                return grid;
+                cell.IsObstacle = false;
             }
         }
 
-        Debug.LogError("❌ Failed to generate valid grid.");
+        if (result.Path != null && result.Turns >= minTurnCount)
+        {
+            grid.MinTurnCount = result.Turns;
+            grid.PathCount = result.Path.Count;
+            grid.GridIndex = gridIndex;
+            return grid;
+        }
+
         return null;
     }
 

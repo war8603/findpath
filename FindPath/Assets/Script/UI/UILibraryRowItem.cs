@@ -16,13 +16,13 @@ namespace FindPath
             return _sizeRectTransform.sizeDelta.y;
         }
 
-        public void SetData(List<GridData> gridData)
+        public void SetData(List<GridData> gridData, List<int> clearCounts)
         {
-            _leftItem.SetData(gridData[0]);
+            _leftItem.SetData(gridData[0], clearCounts[0]);
             if (gridData.Count > 1)
             {
                 _rightItem.gameObject.SetActive(true);
-                _rightItem.SetData(gridData[1]);
+                _rightItem.SetData(gridData[1], clearCounts[1]);
             }
             else
             {

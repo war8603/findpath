@@ -1,18 +1,57 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameUtilities;
 using Managers;
 using UnityEngine;
 using VContainer;
+using Newtonsoft.Json;
 
 namespace FindPath
 {
+    public class StageClearData
+    {
+        public int GridIndex;
+        public int ClearCount;
+    }
+    
     public class DataManager : IBaseManager
     {
         [Inject] private readonly AssetManager _assetManager;
         
         private GridDataAsset _gridDataAsset;
         private DifficultyDataConfig _difficultyDataConfig;
+        private List<StageClearData> _stageClearData;
 
+        public void InitManager()
+        {
+            var gridDataAsset = _gridDataAsset;
+            if (gridDataAsset != null)
+            {
+                _gridDataAsset = null;
+            }
+
+            LoadStageClearData();
+        }
+
+        public int GetClearCount(int gridIndex)
+        {
+            var stageData = _stageClearData.Find(x => x.GridIndex == gridIndex);
+            return stageData?.ClearCount ?? 0;
+        }
+
+        private void LoadStageClearData()
+        {
+            var stageClearData = PlayerPrefsTool.GetPlayerPrefs(PlayerPrefsKeyNames.StageClearData, string.Empty);
+            if (!string.IsNullOrEmpty(stageClearData))
+            {
+                _stageClearData = JsonConvert.DeserializeObject<List<StageClearData>>(stageClearData);
+            }
+            else
+            {
+                _stageClearData = new List<StageClearData>();
+            }
+        }
+        
         private GridDataAsset GetGridDataAsset()
         {
             if (_gridDataAsset == null)
@@ -40,15 +79,6 @@ namespace FindPath
             }
             return _difficultyDataConfig;
         }
-        
-        public void InitManager()
-        {
-            var gridDataAsset = _gridDataAsset;
-            if (gridDataAsset != null)
-            {
-                _gridDataAsset = null;
-            }
-        }
 
         public int GetGroupCount()
         {
@@ -64,6 +94,7 @@ namespace FindPath
             {
                 gridDataList.AddRange(gridDataGroup.grids);
             }
+            gridDataList.Sort((a, b) => a.GridIndex.CompareTo(b.GridIndex));
             return gridDataList;
         }
 
@@ -85,6 +116,22 @@ namespace FindPath
             
             var gridDataGroup = gridDataAsset.groups.Find(x => x.minTurnCount == turnCount);
             return gridDataGroup.grids[Random.Range(0, gridDataGroup.grids.Count)];
+        }
+
+        public void SaveStageClearData(int gridIndex)
+        {
+            var stageClearData = _stageClearData.Find(x => x.GridIndex == gridIndex);
+            if (stageClearData != null)
+            {
+                stageClearData.ClearCount += 1;
+            }
+            else
+            {
+                _stageClearData.Add(new StageClearData { GridIndex = gridIndex, ClearCount = 1});
+            }
+            
+            var json = JsonConvert.SerializeObject(_stageClearData);
+            PlayerPrefsTool.SetPlayerPrefs(PlayerPrefsKeyNames.StageClearData, json);
         }
     }
 }

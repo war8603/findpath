@@ -96,6 +96,11 @@ namespace FindPath
             _coinInfos.Clear();
         }
 
+        public int GetGridIndex()
+        {
+            return _map.GridIndex;
+        }
+
         public void CreateMap(int stageClearCount)
         {
             CreateGridMap(stageClearCount);

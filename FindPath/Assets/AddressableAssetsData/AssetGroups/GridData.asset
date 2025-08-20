@@ -15,14 +15,14 @@ MonoBehaviour:
   m_GroupName: GridData
   m_GUID: 647d1d5c038f8a14386c0101cd58a242
   m_SerializeEntries:
-  - m_GUID: 58364e1dd59c69242b3d2476a3cd3750
-    m_Address: DifficultyDataConfig
+  - m_GUID: 378641631901f1849aee0da9ae1899fd
+    m_Address: GridDataCollection
     m_ReadOnly: 0
     m_SerializedLabels:
     - GridData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c3e6bd170f67a764a8310c5093aff3d8
-    m_Address: GridDataCollection
+  - m_GUID: 58364e1dd59c69242b3d2476a3cd3750
+    m_Address: DifficultyDataConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - GridData

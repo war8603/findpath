@@ -28,6 +28,20 @@ namespace FindPath
         public void ShowView()
         {
             _gridDataList = _dataManager.GetGridDataList();
+            _gridDataList.Sort((a, b) =>
+            {
+                var ca = _dataManager.GetClearCount(a.GridIndex);
+                var cb = _dataManager.GetClearCount(b.GridIndex);
+
+                // 1) 둘 다 0 이상 → gridIndex 오름차순
+                if (ca > 0 && cb > 0) return a.GridIndex.CompareTo(b.GridIndex);
+
+                // 2) 둘 다 0 -> gridIndex 오름차순
+                if (ca == 0 && cb == 0) return a.GridIndex.CompareTo(b.GridIndex);
+
+                // 3) 하나만 0 이상 → 0 이상인 쪽 우선
+                return (ca > 0) ? -1 : 1;
+            });
             _scroller.Delegate = this;
         }
 
@@ -66,13 +80,16 @@ namespace FindPath
             _objectResolver.InjectGameObject(item.gameObject);
 
             var gridDataList = new List<GridData>();
+            var clearCounts = new List<int>();
             gridDataList.Add(_gridDataList[dataIndex * 2]);
+            clearCounts.Add(_dataManager.GetClearCount(_gridDataList[dataIndex * 2].GridIndex));
             if (dataIndex * 2 + 1 < _gridDataList.Count)
             {
-                gridDataList.Add(_gridDataList[dataIndex * 2 + 1]);   
+                gridDataList.Add(_gridDataList[dataIndex * 2 + 1]);
+                clearCounts.Add(_dataManager.GetClearCount(_gridDataList[dataIndex * 2 + 1].GridIndex));
             }
-
-            item.SetData(gridDataList);
+            
+            item.SetData(gridDataList, clearCounts);
 
             return item;
         }
