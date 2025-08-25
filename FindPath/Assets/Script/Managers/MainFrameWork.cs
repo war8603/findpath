@@ -19,6 +19,8 @@ namespace Managers
         private void Start()
         {
             Init();
+            Application.targetFrameRate = 60;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
         private void Init()
