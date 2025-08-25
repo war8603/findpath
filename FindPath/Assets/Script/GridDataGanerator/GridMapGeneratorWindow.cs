@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
+#if UNITY_EDITOR
 
 [System.Serializable]
 public class GridMapSetting
@@ -152,3 +153,4 @@ public class GridMapGeneratorWindow : EditorWindow
         Debug.Log($"✅ Generated {settings.Count} map sets. Saved to {savePath}");
     }
 }
+#endif
