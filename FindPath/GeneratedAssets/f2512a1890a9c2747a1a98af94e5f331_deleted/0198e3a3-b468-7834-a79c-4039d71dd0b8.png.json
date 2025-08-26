@@ -1,0 +1,20 @@
+{
+    "asset": "f2512a1890a9c2747a1a98af94e5f331",
+    "fileName": "0198e3a3-b468-7834-a79c-4039d71dd0b8.png",
+    "prompt": "// 2025-08-26 AI-Tag\n// This was created with the help of Assistant, a Unity Artificial Intelligence product.\n\n```csx\nusing UnityEngine;\r\n\r\nnamespace Unity.AI.Assistant.Agent.Dynamic.Extension.Editor\r\n{\r\n    [CommandDescription(\"Provide instructions for drawing a 2D character\")]\r\n    internal class CommandScript : IRunCommand\r\n    {\r\n        public void Execute(ExecutionResult result)\r\n        {\r\n            result.Log(\"To draw a 2D character in Unity, follow these steps:\");\r\n            result.Log(\"1. Create a new Sprite for your character or import an existing one into your project.\");\r\n            result.Log(\"2. Drag the Sprite into the Scene view to create a GameObject.\");\r\n            result.Log(\"3. Adjust the Transform properties (position, scale, rotation) as needed.\");\r\n            result.Log(\"4. Add a Rigidbody2D component if you want the character to interact with physics.\");\r\n            result.Log(\"5. Add a Collider2D component to define the character's collision boundaries.\");\r\n            result",
+    "negativePrompt": "// 2025-08-26 AI-Tag\n// This was created with the help of Assistant, a Unity Artificial Intelligence product.\n\n```csx\nusing UnityEngine;\r\n\r\nnamespace Unity.AI.Assistant.Agent.Dynamic.Extension.Editor\r\n{\r\n    [CommandDescription(\"Provide negative prompt for drawing a 2D character\")]\r\n    internal class CommandScript : IRunCommand\r\n    {\r\n        public void Execute(ExecutionResult result)\r\n        {\r\n            result.Log(\"Negative prompts are typically used in AI-generated art to specify what should be avoided in the output. For drawing a 2D character in Unity, negative prompts are not directly applicable. Instead, focus on ensuring the character's design and implementation meet your requirements by avoiding undesired elements during the creation process.\");\r\n        }\r\n\r\n        public void BuildPreview(PreviewBuilder builder)\r\n        {\r\n            builder.Append(\"This command will explain the concept of negative prompts and their relevance to 2D character creation in Unity.\");\r\n        }\r\n    }\r\n}\n```\n",
+    "model": "52688219-02d2-4322-905c-966c5f4b01da",
+    "modelName": "Plastic 3D",
+    "customSeed": -1,
+    "w3CTraceId": "a6a4f4242a1ee4feec7fc5f97cdc7eae",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
