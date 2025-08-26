@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 4df5595bb5e1fa248a45483751092c23
   m_SerializeEntries:
   - m_GUID: 13b2c878a762851489ec956dd60ec54b
-    m_Address: UILibraryItem
+    m_Address: UICollectionItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
@@ -46,19 +46,19 @@ MonoBehaviour:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9690f0d74ca44d64fac01d6b65fbc2a8
-    m_Address: UILibraryPopupView
+    m_Address: UICollectionPopupView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4d2697b11b5c4543b4596194ecde243
-    m_Address: UILibraryCellRowItem
+    m_Address: UICollectionCellRowItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fee916082fb467a47a38337e00cb9aeb
-    m_Address: UILibraryCellItem
+    m_Address: UICollectionCellItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
