@@ -34,6 +34,7 @@ namespace Managers
             _managers.Add(Create<InventoryManager>());
             _managers.Add(Create<AssetManager>());
             _managers.Add(Create<AdsManager>());
+            _managers.Add(Create<IAPManager>());
             
             _managers.Add(CreateGameObject<UIManager>());
             _managers.Add(CreateGameObject<SkillManager>());
