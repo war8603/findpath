@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 0a86cdcb35cb8144fac437e2d784d625
+guid: 6868e92486c7e63478fb43a4f41d3d41
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4051341517133224153
-    second: CloseButton_142x142_0
+      213: -765150924802650856
+    second: arrow_0
+  - first:
+      213: -7451953295746623981
+    second: arrow_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Btn_Popup_Close
+      name: arrow_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 142
-        height: 142
+        x: 223
+        y: 446
+        width: 578
+        height: 451
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d8948815a1493830800000000000000
-      internalID: 4051341517133224153
+      spriteID: 81d839fa943a165f0800000000000000
+      internalID: -765150924802650856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_1
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 57
+        width: 723
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316983ca5f7559890800000000000000
+      internalID: -7451953295746623981
       vertices: []
       indices: 
       edges: []
@@ -151,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ab17e18b937e64d469f6af7c3a110834
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Btn_Popup_Close: 4051341517133224153
+      arrow_0: -765150924802650856
+      arrow_1: -7451953295746623981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

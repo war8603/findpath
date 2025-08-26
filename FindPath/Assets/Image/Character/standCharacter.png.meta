@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a86cdcb35cb8144fac437e2d784d625
+guid: 274808368dcefcf458e29e4a9ee944b3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4051341517133224153
-    second: CloseButton_142x142_0
+      213: -829231918707950675
+    second: standCharacter_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Btn_Popup_Close
+      name: standCharacter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 142
-        height: 142
+        width: 1024
+        height: 1019
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d8948815a1493830800000000000000
-      internalID: 4051341517133224153
+      spriteID: dab3ff0a6f9fd74f0800000000000000
+      internalID: -829231918707950675
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ab17e18b937e64d469f6af7c3a110834
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Btn_Popup_Close: 4051341517133224153
+      standCharacter_0: -829231918707950675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

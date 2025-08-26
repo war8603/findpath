@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace FindPath
 {
-    public class UILibraryPopupView : UIMainView, IEnhancedScrollerDelegate
+    public class UICollectionPopupView : UIMainView, IEnhancedScrollerDelegate
     {
         [Inject] private readonly DataManager _dataManager;
         [Inject] private readonly IObjectResolver _objectResolver;

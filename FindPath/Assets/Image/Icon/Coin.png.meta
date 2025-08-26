@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 706145ec088bcef46a9805deff58dc58
+guid: 54f38361f4d9d3a47b2ceead270a4f21
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6143896527639743493
-    second: QuestionmarkIcon_0
+      213: -856123885084621454
+    second: coin_resized_128_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: QuestionmarkIcon_0
+      name: Coin
       rect:
         serializedVersion: 2
-        x: 199
-        y: 88
-        width: 610
-        height: 844
+        x: 14
+        y: 19
+        width: 99
+        height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50c09b21751834550800000000000000
-      internalID: 6143896527639743493
+      spriteID: 275cdc9ccdf6e14f0800000000000000
+      internalID: -856123885084621454
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b629586c37c56754bae5ba952d6b4258
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Coin: -856123885084621454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a86cdcb35cb8144fac437e2d784d625
+guid: 432ce2d446ae912488a358a8ed747ddf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4051341517133224153
-    second: CloseButton_142x142_0
+      213: -3425775847718836595
+    second: Button_1_resized_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Btn_Popup_Close
+      name: Button_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 142
-        height: 142
+        x: 36
+        y: 41
+        width: 325
+        height: 215
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 60, y: 60, z: 60, w: 60}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d8948815a1493830800000000000000
-      internalID: 4051341517133224153
+      spriteID: d862b9c54033570d0800000000000000
+      internalID: -3425775847718836595
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ab17e18b937e64d469f6af7c3a110834
+    spriteID: 0855efbe0d164ef46a597c4a4e28ed47
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Btn_Popup_Close: 4051341517133224153
+      Button_1: -3425775847718836595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

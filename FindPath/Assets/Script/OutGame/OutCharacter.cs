@@ -6,17 +6,20 @@ namespace FindPath
 {
     public class OutCharacter : MonoBehaviour
     {
+        private static readonly int Run = Animator.StringToHash("run");
         [Inject] private readonly OutGameManager _outGameManager;
 
         [SerializeField] private float _walkSpeed;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _collider;
+        [SerializeField] private Animator _animator;
 
         private Vector2 _direction = new Vector2(1f, 0);
 
         private void Awake()
         {
             ChangeDirection();
+            _animator.SetTrigger(Run);
         }
         
         public void Update()

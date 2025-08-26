@@ -1,6 +1,7 @@
 using GameUtilities;
 using Managers;
 using UniRx;
+using UnityEngine;
 
 namespace FindPath
 {
@@ -28,6 +29,7 @@ namespace FindPath
         public void SaveData()
         {
             PlayerPrefsTool.SetPlayerPrefs(PlayerPrefsKeyNames.Coin, _coinProperty.Value);
+            PlayerPrefs.Save();
         }
 
         public void InitManager()

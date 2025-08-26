@@ -76,6 +76,7 @@ namespace FindPath
         private void SaveSkillCount(SkillType skillType)
         {
             PlayerPrefsTool.SetPlayerPrefs(skillType.ToString(), _skillCount[skillType].Value);
+            PlayerPrefs.Save();
         }
     }
 }

@@ -171,6 +171,7 @@ namespace FindPath
             if (preScore < CurrentScore.Value)
             {
                 PlayerPrefsTool.SetPlayerPrefs(PlayerPrefsKeyNames.BestScore, CurrentScore.Value);
+                PlayerPrefs.Save();
             }
         }
 

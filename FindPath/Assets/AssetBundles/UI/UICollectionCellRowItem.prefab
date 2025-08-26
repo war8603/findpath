@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6635207558757757648}
   - component: {fileID: 2986170242191940286}
   m_Layer: 5
-  m_Name: UILibraryCellRowItem
+  m_Name: UICollectionCellRowItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,6 +216,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1488134773179790419, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontSize
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819410792399820413, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640357892296131678, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontSize
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011640527892113307, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113738104523973040, guid: 13b2c878a762851489ec956dd60ec54b, type: 3}

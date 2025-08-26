@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 907977990493451547}
   - component: {fileID: 9162292331383062802}
   m_Layer: 5
-  m_Name: UILibraryCellItem
+  m_Name: UICollectionCellItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

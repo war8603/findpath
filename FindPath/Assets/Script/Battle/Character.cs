@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using VContainer;
@@ -7,6 +6,8 @@ namespace FindPath
 {
     public class Character : MonoBehaviour
     {
+        private static readonly int Run = Animator.StringToHash("run");
+
         private enum MoveType
         {
             Walk,
@@ -18,6 +19,7 @@ namespace FindPath
         [SerializeField] private float _walkSpeed;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _collider;
+        [SerializeField] private Animator _animator;
 
         private Vector2 _direction;
         private float _defaultWalkSpeed;
@@ -161,6 +163,8 @@ namespace FindPath
         public void SetDirection(Vector2 direction)
         {
             if (direction == _direction || direction * -1 == _direction ) return;
+         
+            _animator.SetTrigger(Run);
             
             _battleManager.AddTurnCount();
             _direction = direction;

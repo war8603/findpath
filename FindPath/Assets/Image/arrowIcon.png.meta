@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a86cdcb35cb8144fac437e2d784d625
+guid: 88be68dcb62c92f4bb0005df6adbe5fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4051341517133224153
-    second: CloseButton_142x142_0
+      213: -9154050587415970274
+    second: arrowIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Btn_Popup_Close
+      name: arrowIcon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 142
-        height: 142
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d8948815a1493830800000000000000
-      internalID: 4051341517133224153
+      spriteID: e1e7d11bd7746f080800000000000000
+      internalID: -9154050587415970274
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ab17e18b937e64d469f6af7c3a110834
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Btn_Popup_Close: 4051341517133224153
+      arrowIcon_0: -9154050587415970274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
