@@ -30,4 +30,10 @@ namespace FindPath
         Obstacle,
         Normal,
     }
+
+    public enum SoundType
+    {
+        BGM,
+        SE,
+    }
 }

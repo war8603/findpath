@@ -10,6 +10,7 @@ namespace Managers
     {
         private readonly Dictionary<string, AsyncOperationHandle<GameObject>> _objectHandles = new();
         private readonly Dictionary<string, AsyncOperationHandle<ScriptableObject>> _scriptableObjectHandles = new();
+        private readonly Dictionary<string, AsyncOperationHandle<AudioClip>> _audioClipHandles = new();
         
         public void InitManager()
         {
@@ -64,6 +65,18 @@ namespace Managers
         {
             handle.WaitForCompletion();
             return (T)handle.Result;
+        }
+
+        public AudioClip LoadAudioClip(string name)
+        {
+            if (_audioClipHandles.TryGetValue(name, out var handle))
+            {
+                return LoadAsset<AudioClip>(handle);
+            }
+
+            handle = Addressables.LoadAssetAsync<AudioClip>(name);
+            _audioClipHandles.Add(name, handle);
+            return LoadAsset<AudioClip>(handle);
         }
 
         private async UniTask<T> LoadAssetAsync<T>(AsyncOperationHandle handle)

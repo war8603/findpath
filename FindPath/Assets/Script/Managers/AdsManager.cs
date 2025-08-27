@@ -15,10 +15,6 @@ namespace Managers
         private string _rewardedAdUnitId = "ca-app-pub-3940256099942544/1033173712";
         private RewardedAd _rewardedAd;
         
-        // 전면 광고
-        private string _interstitialAdUnitId;
-        private InterstitialAd _interstitialAd;
-
         private UniTaskCompletionSource _taskCompletionSource;
 
         public void InitManager()
@@ -36,13 +32,10 @@ namespace Managers
                 Debug.Log($"MobileAds 초기화 완료");
                 
                 // 배너 광고 로드
-                //LoadBannerAd();
+                LoadBannerAd();
 
                 // 보상형 광고 로드
                 LoadRewardedAd();
-                
-                // 전면 광고 로드
-                LoadInterstitialAd();
                 
                 _taskCompletionSource.TrySetResult();
             });
@@ -157,75 +150,5 @@ namespace Managers
         }
 #endregion
 
-#region InterstitialAd
-        public void ShowInterstitialAd()
-        {
-            if (_interstitialAd != null && _interstitialAd.CanShowAd())
-            {
-                Debug.Log("Showing interstitial ad.");
-                _interstitialAd.Show();
-            }
-            else
-            {
-                Debug.LogError("Interstitial ad is not ready yet.");
-            }
-        }
-
-        private void LoadInterstitialAd()
-        {
-            // Clean up the old ad before loading a new one.
-            if (_interstitialAd != null)
-            {
-                _interstitialAd.Destroy();
-                _interstitialAd = null;
-            }
-
-            Debug.Log("Loading the interstitial ad.");
-
-            var adRequest = new AdRequest();
-            InterstitialAd.Load(_interstitialAdUnitId, adRequest,
-                (InterstitialAd ad, LoadAdError error) =>
-                {
-                    if (error != null || ad == null)
-                    {
-                        Debug.LogError("interstitial ad failed to load an ad " + "with error : " + error);
-                        return;
-                    }
-                    Debug.Log("Interstitial ad loaded with response : " + ad.GetResponseInfo());
-                    _interstitialAd = ad;
-                    RegisterEventHandlers(ad);
-                });
-        }
-
-        private void RegisterEventHandlers(InterstitialAd interstitialAd)
-        {
-            interstitialAd.OnAdPaid += (AdValue adValue) =>
-            {
-                Debug.Log($"Interstitial ad paid {adValue.Value} {adValue.CurrencyCode}.");
-            };
-            interstitialAd.OnAdImpressionRecorded += () =>
-            {
-                Debug.Log("Interstitial ad recorded an impression.");
-            };
-            interstitialAd.OnAdClicked += () =>
-            {
-                Debug.Log("Interstitial ad was clicked.");
-            };
-            interstitialAd.OnAdFullScreenContentOpened += () =>
-            {
-                Debug.Log("Interstitial ad full screen content opened.");
-            };
-            interstitialAd.OnAdFullScreenContentClosed += () =>
-            {
-                Debug.Log("Interstitial ad full screen content closed.");
-                LoadInterstitialAd();
-            };
-            interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
-            {
-                Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
-                LoadInterstitialAd();
-            };
-        }
-#endregion
     }
 }

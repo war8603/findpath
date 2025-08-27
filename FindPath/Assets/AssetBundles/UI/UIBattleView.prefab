@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 8705881512781965865}
   - component: {fileID: 728602658178372040}
   - component: {fileID: 208268606532526266}
+  - component: {fileID: 1391155431874180070}
   m_Layer: 5
   m_Name: UpArrow
   m_TagString: Untagged
@@ -418,6 +419,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1391155431874180070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234408551465930053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &1974998227104758910
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +498,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (1/2)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -642,6 +655,7 @@ GameObject:
   - component: {fileID: 7524850038665102734}
   - component: {fileID: 5486263089867741318}
   - component: {fileID: 2954310149825270819}
+  - component: {fileID: 3984117861561957932}
   m_Layer: 5
   m_Name: Skill2
   m_TagString: Untagged
@@ -769,6 +783,18 @@ MonoBehaviour:
   _skillIcon: {fileID: 7524850038665102734}
   _notEnoughCover: {fileID: 5737741268322316092}
   _currentSkillCount: {fileID: 499901809613256627}
+--- !u!114 &3984117861561957932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2683446518102939512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &3007926714191689815
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +883,7 @@ GameObject:
   - component: {fileID: 4447371478758211821}
   - component: {fileID: 5581391626969191375}
   - component: {fileID: 9134279119007586334}
+  - component: {fileID: 9121399640005683617}
   m_Layer: 5
   m_Name: Skill3
   m_TagString: Untagged
@@ -984,6 +1011,18 @@ MonoBehaviour:
   _skillIcon: {fileID: 4447371478758211821}
   _notEnoughCover: {fileID: 4800872636302996260}
   _currentSkillCount: {fileID: 7507223053472169035}
+--- !u!114 &9121399640005683617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220488587728682126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &3276803871506663194
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1036,7 @@ GameObject:
   - component: {fileID: 5916633979967637622}
   - component: {fileID: 452159679916262957}
   - component: {fileID: 9033405680545236223}
+  - component: {fileID: 1659322608853994001}
   m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
@@ -1127,6 +1167,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1659322608853994001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276803871506663194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &3374784844193706506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,8 +1246,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (1/2)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1396,8 +1448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1490,17 +1542,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3809068633679882787}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5111253902093454007}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7604029540538862837
 CanvasRenderer:
@@ -1530,7 +1582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -856123885084621454, guid: 54f38361f4d9d3a47b2ceead270a4f21, type: 3}
+  m_Sprite: {fileID: -6729802711000188491, guid: 94fc6a99f27a8e0448352702b26e84a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1628,6 +1680,7 @@ GameObject:
   - component: {fileID: 6109972002290581525}
   - component: {fileID: 2979405949341968169}
   - component: {fileID: 4689873650339694769}
+  - component: {fileID: 5815497271070924496}
   m_Layer: 5
   m_Name: Skill4
   m_TagString: Untagged
@@ -1755,6 +1808,18 @@ MonoBehaviour:
   _skillIcon: {fileID: 6109972002290581525}
   _notEnoughCover: {fileID: 2201559691979349858}
   _currentSkillCount: {fileID: 3258334326949853936}
+--- !u!114 &5815497271070924496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458532934589917327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &5513191395479875014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,6 +1897,7 @@ GameObject:
   - component: {fileID: 8906560993019116850}
   - component: {fileID: 982798902920784496}
   - component: {fileID: 1026454069656467153}
+  - component: {fileID: 6104694010612911017}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -1962,6 +2028,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6104694010612911017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5667430435357493883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &5676811342673205105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2168,7 @@ GameObject:
   - component: {fileID: 8022171243502739163}
   - component: {fileID: 1026578446778506853}
   - component: {fileID: 5334233489559055813}
+  - component: {fileID: 1056832744787927479}
   m_Layer: 5
   m_Name: Down
   m_TagString: Untagged
@@ -2220,6 +2299,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1056832744787927479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988075847081002833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &6274733408274200633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,7 +2346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 142.505, y: -50}
+  m_AnchoredPosition: {x: 192.505, y: -50}
   m_SizeDelta: {x: 45.01, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4006427189065310967
@@ -2288,8 +2379,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2438,8 +2529,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (1/2)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2556,6 +2647,7 @@ GameObject:
   - component: {fileID: 3182090144417396369}
   - component: {fileID: 8856355117585702770}
   - component: {fileID: 1746061928668324048}
+  - component: {fileID: 1873435565650236397}
   m_Layer: 5
   m_Name: Skill1
   m_TagString: Untagged
@@ -2683,6 +2775,18 @@ MonoBehaviour:
   _skillIcon: {fileID: 3182090144417396369}
   _notEnoughCover: {fileID: 3007926714191689815}
   _currentSkillCount: {fileID: 2306582807771402781}
+--- !u!114 &1873435565650236397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946046242696977582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb305b684eb348844bc9ff86c7b80676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSFX
 --- !u!1 &8648766201338223442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,8 +2854,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2886,8 +2990,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3022,8 +3126,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (1/2)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
-  m_sharedMaterial: {fileID: 6375654381601956520, guid: 3a29e8beacc92fc4dbff543ea97db580, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
+  m_sharedMaterial: {fileID: 8253229503325445769, guid: 7feddfe47b945d149ae180cec6c227e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

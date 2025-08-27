@@ -116,6 +116,8 @@ namespace FindPath
         /// <param name="jumpSkillInfo"></param>
         private void DoJump(JumpSkillInfo jumpSkillInfo)
         {
+            _battleManager.PlaySound(SoundType.SE, DataConfig.JumpSkillSEName);
+            
             _moveType = MoveType.Jump;
             transform.DOJump((Vector2)jumpSkillInfo.Position, 0.5f, 1, 1 / _walkSpeed)
                 .OnComplete(() => _moveType = MoveType.Walk);

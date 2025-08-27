@@ -12,5 +12,17 @@ namespace FindPath
         
         public const float MinTurnCountOffset = 3f;
         public const float PlayTimeOffset = 2f;
+        
+        
+        // BGM
+        public const string OutGameBGMName = "outBgm";
+        public const string BattleGameBGMName = "battleBgm";
+        
+        // SE
+        public const string CollectCoinSEName = "getCoin";
+        public const string JumpSkillSEName = "jump1";
+        public const string GameOverSEName = "game_over";
+        public const string GameClearSEName = "game_clear";
+        public const string ButtonClickSoundSEName = "ui_click_heavy";
     }
 }

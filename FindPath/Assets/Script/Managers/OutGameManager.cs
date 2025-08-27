@@ -10,6 +10,8 @@ namespace Managers
     {
         [Inject] private readonly CustomObjectPool _objectPool;
         [Inject] private readonly UIManager _uiManager;
+        [Inject] private readonly SoundManager _soundManager;
+        [Inject] private readonly AssetManager _assetManager;
         
         private GameObject _outGameRoot;
         private static readonly Vector2Int LeftBottomPosition = new Vector2Int(-2, -2);
@@ -33,6 +35,7 @@ namespace Managers
             CreateRoot();
             CreateMap();
             CreateCharacter();
+            PlayBGM();
             CreateUIView().Forget();
         }
 
@@ -66,6 +69,12 @@ namespace Managers
             }
             _character = _objectPool.GetGameObject(ObjectNames.OutCharacterPrefabName);
             _character.transform.position = Vector3.zero;
+        }
+
+        private void PlayBGM()
+        {
+            var clip = _assetManager.LoadAudioClip(DataConfig.OutGameBGMName);
+            _soundManager.PlaySound(SoundType.BGM, clip);
         }
         
         private void InitBattleCamera()

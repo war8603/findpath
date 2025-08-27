@@ -17,6 +17,8 @@ namespace FindPath
         [Inject] private readonly InventoryManager _inventoryManager;
         [Inject] private readonly AdsManager _adsManager;
         [Inject] private readonly DataManager _dataManager;
+        [Inject] private readonly AssetManager _assetManager;
+        [Inject] private readonly SoundManager _soundManager;
         
         private MapManager _mapManager;
         private CharacterManager _characterManager;
@@ -79,6 +81,14 @@ namespace FindPath
             CurrentScore.Value = 0;
             _stageClearCount = 0;
             StartBattle().Forget();
+
+            PlaySound(SoundType.BGM, DataConfig.BattleGameBGMName);
+        }
+
+        public void PlaySound(SoundType soundType, string clipName)
+        {
+            var clip = _assetManager.LoadAudioClip(clipName);
+            _soundManager.PlaySound(soundType, clip);
         }
 
         private async UniTask StartBattle()
@@ -206,12 +216,16 @@ namespace FindPath
 
         private async UniTask ShowStageClearView()
         {
+            PlaySound(SoundType.SE, DataConfig.GameClearSEName);
+            
             var view = await _uiManager.CreateView<UIStageClearView>(UIViewNames.UIStageClearView);
             await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
 
         private async UniTask ShowGameOverView()
         {
+            PlaySound(SoundType.SE, DataConfig.GameOverSEName);
+            
             var view = await _uiManager.CreateView<UIGameOverView>(UIViewNames.UIGameOverView);
             await UniTask.WaitUntil(() => view == null, cancellationToken: _cts.Token);
         }
@@ -331,6 +345,7 @@ namespace FindPath
         {
             if (!_mapManager.TryCollectCoinAt(position)) return;
             
+            PlaySound(SoundType.SE, DataConfig.CollectCoinSEName);
             _inventoryManager.IncreaseCoins(1);
             CurrentScore.Value += DataConfig.CoinScore;
         }

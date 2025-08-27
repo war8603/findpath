@@ -39,6 +39,7 @@ namespace Managers
             _managers.Add(CreateGameObject<UIManager>());
             _managers.Add(CreateGameObject<SkillManager>());
             _managers.Add(CreateGameObject<CustomObjectPool>());
+            _managers.Add(CreateGameObject<SoundManager>());
 
             Create<ObjectFactory>();
 

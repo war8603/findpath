@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sound
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Sound
+  m_GUID: b078cbdd606d80c46b1bb78f56c39567
+  m_SerializeEntries:
+  - m_GUID: 0ec33b95ea0a46c4c8ed4fb77b00a6eb
+    m_Address: jump2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31893f6f129715f478f2c416c29bbc8c
+    m_Address: game_over
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31d3a868d73057142b1fa5a31a19cecc
+    m_Address: getCoin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f42c86edaa84a2459cdc369c54a92a6
+    m_Address: ui_click_heavy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound_{category}
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abdf9ee9b93ccf34e8d6f23b3fa390d9
+    m_Address: outBgm
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2e8d56f8d19b894289c2199a421c526
+    m_Address: jump1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbf39027eca793141a147733f6fb52c4
+    m_Address: battleBgm
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f271e01d2eda2c946858ecff77753d2d
+    m_Address: game_clear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 44c8d982bf390a949912fab62f075e84, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 25d1ad17ab3afac4cb9dab11927e2922, type: 2}
+    - {fileID: 11400000, guid: 9327e1b90e7de334a9f2d5856294e2d1, type: 2}

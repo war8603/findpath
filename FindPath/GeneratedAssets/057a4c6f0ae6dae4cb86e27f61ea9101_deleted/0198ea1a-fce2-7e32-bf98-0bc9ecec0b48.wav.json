@@ -1,0 +1,13 @@
+{
+    "asset": "057a4c6f0ae6dae4cb86e27f61ea9101",
+    "fileName": "0198ea1a-fce2-7e32-bf98-0bc9ecec0b48.wav",
+    "prompt": "// 2025-08-27 AI-Tag\n// This was created with the help of Assistant, a Unity Artificial Intelligence product.\n\n```csx\nusing UnityEngine;\r\n\r\nnamespace Unity.AI.Assistant.Agent.Dynamic.Extension.Editor\r\n{\r\n    [CommandDescription(\"Play background sound for a fantasy village scene\")]\r\n    internal class CommandScript : IRunCommand\r\n    {\r\n        [CommandParameter(LookupType.Asset, \"Assets/Audio/FantasyVillageBGM.mp3\")]\r\n        AudioClip m_BackgroundAudio;\r\n        public void Execute(ExecutionResult result)\r\n        {\r\n            if (m_BackgroundAudio != null)\r\n            {\r\n                // Create an AudioSource to play the background sound\r\n                GameObject audioPlayer = new GameObject(\"FantasyVillageAudioPlayer\");\r\n                AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();\r\n                result.RegisterObjectCreation(audioPlayer);\r\n                result.RegisterObjectCreation(audioSource);\r\n                audioSource.clip = m_BackgroundAudio;\r\n                audioS",
+    "negativePrompt": "music",
+    "model": "0ee39b33-2893-4e0f-8c46-0e0bdd4eda85",
+    "modelName": "Text to Sound",
+    "customSeed": -1,
+    "w3CTraceId": "1fcae9468eced3d532eaa4b3bcaa06bb",
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}
