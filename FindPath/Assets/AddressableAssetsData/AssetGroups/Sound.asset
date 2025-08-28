@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Sound
   m_GUID: b078cbdd606d80c46b1bb78f56c39567
   m_SerializeEntries:
+  - m_GUID: 03afc861a5893db4a9d818594ffded50
+    m_Address: outBgm
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ec33b95ea0a46c4c8ed4fb77b00a6eb
     m_Address: jump2
     m_ReadOnly: 0
@@ -36,11 +42,10 @@ MonoBehaviour:
   - m_GUID: 6f42c86edaa84a2459cdc369c54a92a6
     m_Address: ui_click_heavy
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sound_{category}
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: abdf9ee9b93ccf34e8d6f23b3fa390d9
-    m_Address: outBgm
+    m_Address: outBgm2
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sound
