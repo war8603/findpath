@@ -12,13 +12,19 @@ namespace Managers
         private BannerView _bannerView;
 
         // 보상형 광고
-        private string _rewardedAdUnitId = "ca-app-pub-3940256099942544/1033173712";
+#if UNITY_ANDROID
+        private const string RewardedAdUnitId = "ca-app-pub-3940256099942544/5224354917"; // Rewarded (Android)
+#elif UNITY_IOS
+        private const string RewardedAdUnitId = "ca-app-pub-3940256099942544/1712485313"; // Rewarded (iOS 테스트용)
+#endif
         private RewardedAd _rewardedAd;
+        private bool _isShowing;
         
         private UniTaskCompletionSource _taskCompletionSource;
 
         public void InitManager()
         {
+            MobileAds.RaiseAdEventsOnUnityMainThread = true;
             Init().Forget();
         }
 
@@ -90,27 +96,55 @@ namespace Managers
 #region RewardedAd
         public void ShowRewardedAd(UnityAction onsuccessCallback, UnityAction onFailedCallback)
         {
-            MobileAds.RaiseAdEventsOnUnityMainThread = true;
-            if (_rewardedAd != null && _rewardedAd.CanShowAd())
+            if (_isShowing) return;
+
+            if (_rewardedAd == null || !_rewardedAd.CanShowAd()) 
             {
-                _rewardedAd.Show((Reward reward) =>
-                {
-                    if (reward == null)
-                    {
-                        Debug.LogError("[AdsManager] ShowAd Reward is null");
-                        onFailedCallback?.Invoke();
-                    }
-                    else
-                    {
-                        Debug.Log($"[AdsManager] ShowAd Reward = {reward.Type} {reward.Amount}");
-                        onsuccessCallback?.Invoke();
-                    }
-                    
-                    LoadRewardedAd();
-                });
+                onFailedCallback?.Invoke();
+                LoadRewardedAd();
+                return;
             }
-            else
+
+            _isShowing = true;
+            var earned = false;
+
+            _rewardedAd.OnAdFullScreenContentFailed += (AdError error) =>
             {
+                _isShowing = false;
+                onFailedCallback?.Invoke();
+                LoadRewardedAd();
+            };
+
+            _rewardedAd.OnAdFullScreenContentClosed += () =>
+            {
+                // 닫힌 뒤 재로딩 (가장 안전)
+                _rewardedAd?.Destroy();
+                _rewardedAd = null;
+                LoadRewardedAd();
+
+                _isShowing = false;
+                if (earned)
+                {
+                    onsuccessCallback?.Invoke();
+                }
+                else
+                {
+                    onFailedCallback?.Invoke();
+                }
+            };
+
+            try
+            {
+                _rewardedAd.Show(reward => 
+                {
+                    earned = true;
+                    Debug.Log($"[Ads] Earned: {reward?.Type} {reward?.Amount}");
+                });
+            } 
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[Ads] Show failed: {e}");
+                _isShowing = false;
                 onFailedCallback?.Invoke();
                 LoadRewardedAd();
             }
@@ -118,35 +152,22 @@ namespace Managers
 
         private void LoadRewardedAd()
         {
-            // Clean up the old ad before loading a new one.
-            if (_rewardedAd != null)
+            _rewardedAd?.Destroy();
+            _rewardedAd = null;
+
+            Debug.Log("[Ads] Loading rewarded...");
+            var req = new AdRequest();
+
+            RewardedAd.Load(RewardedAdUnitId, req, (ad, error) =>
             {
-                _rewardedAd.Destroy();
-                _rewardedAd = null;
-            }
-
-            Debug.Log("Loading the rewarded ad.");
-
-            // create our request used to load the ad.
-            var adRequest = new AdRequest();
-
-            // send the request to load the ad.
-            RewardedAd.Load(_rewardedAdUnitId, adRequest,
-                (RewardedAd ad, LoadAdError error) =>
+                if (error != null || ad == null) 
                 {
-                    // if error is not null, the load request failed.
-                    if (error != null || ad == null)
-                    {
-                        Debug.LogError("Rewarded ad failed to load an ad " +
-                                       "with error : " + error);
-                        return;
-                    }
-
-                    Debug.Log("Rewarded ad loaded with response : "
-                              + ad.GetResponseInfo());
-
-                    _rewardedAd = ad;
-                });
+                    Debug.LogError($"[Ads] Load failed: {error}");
+                    return;
+                }
+                _rewardedAd = ad;
+                Debug.Log($"[Ads] Loaded: {ad.GetResponseInfo()}");
+            });
         }
 #endregion
 
