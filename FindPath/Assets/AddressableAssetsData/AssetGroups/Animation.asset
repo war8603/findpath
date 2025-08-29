@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Animation
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Animation
+  m_GUID: 86de54c3c609e66449ff6e086c31e7ae
+  m_SerializeEntries:
+  - m_GUID: 45acb72f12b83d04097998a812e27bc4
+    m_Address: Animator_Dog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animation
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c62ebd3ba48f66740b81a8db8abea420
+    m_Address: Animator_Capybara
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animation
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: deacc6af58a5afb42b31940a07c0d1c8
+    m_Address: Animator_Cat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animation
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 44c8d982bf390a949912fab62f075e84, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b034c3d2e9f6c574eb720858d3aadbe5, type: 2}
+    - {fileID: 11400000, guid: 80e647ca474867f43bd8dbdfc7e9430d, type: 2}

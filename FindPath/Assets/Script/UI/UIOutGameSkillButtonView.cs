@@ -34,9 +34,11 @@ namespace FindPath
             inventoryManager.CoinProperty.ObserveEveryValueChanged(value => value.Value)
                 .Subscribe(value =>
                 {
-                    if (_skillManager.SkillConfig.GetCostType(_skillType) == CostType.Coin)
+                    var costType = _skillManager.SkillConfig.GetCostType(_skillType);
+                    if (costType == CostType.Coin)
                     {
-                        _purchaseButton.interactable = inventoryManager.IsEnoughCost(_skillManager.SkillConfig.GetCost(_skillType));
+                        _purchaseButton.interactable = inventoryManager.IsEnoughCost(costType,
+                            _skillManager.SkillConfig.GetCost(_skillType));
                     }
                     else
                     {
@@ -79,12 +81,13 @@ namespace FindPath
 
             // 보유 수량 초과시 리턴
             if (currentCount >= maxCount) return;
-            
-            if (_skillManager.SkillConfig.GetCostType(_skillType) == CostType.Coin)
+
+            var costType = _skillManager.SkillConfig.GetCostType(_skillType);
+            if (costType == CostType.Coin)
             {
                 // 재화 부족시 리턴
                 var cost = _skillManager.SkillConfig.GetCost(_skillType);
-                if (!_inventoryManager.IsEnoughCost(cost)) return;
+                if (!_inventoryManager.IsEnoughCost(costType, cost)) return;
 
                 // 스킬 증가
                 _skillManager.IncreaseSkillCount(_skillType, 1);

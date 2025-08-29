@@ -12,7 +12,8 @@ namespace FindPath
         
         public const float MinTurnCountOffset = 3f;
         public const float PlayTimeOffset = 2f;
-        
+
+        public const int CharacterCost = 50;
         
         // BGM
         public const string OutGameBGMName = "outBgm";
@@ -24,5 +25,20 @@ namespace FindPath
         public const string GameOverSEName = "game_over";
         public const string GameClearSEName = "game_clear";
         public const string ButtonClickSoundSEName = "ui_click_heavy";
+
+        public static string GetCharacterIdleName(CharacterType characterType)
+        {
+            return "Character_" + characterType + "_Idle";
+        }
+
+        public static string GetCharacterAnimatorName(CharacterType characterType)
+        {
+            return "Animator_" + characterType;
+        }
+
+        public static string GetCharacterIconName(CharacterType characterType)
+        {
+            return "Character_" + characterType;
+        }
     }
 }

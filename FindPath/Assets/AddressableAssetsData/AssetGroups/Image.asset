@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Image
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Image
+  m_GUID: 63bec17a27f3b6d468b60efda24b6f67
+  m_SerializeEntries:
+  - m_GUID: 083a3cdf69be06148a2b325657f1a106
+    m_Address: Character_Dog_Idle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81ca987ba02bbf44781780e20e086bb6
+    m_Address: Character_Cat_Idle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89e4943dac384c94f8a0c08e4293d121
+    m_Address: Character_Capybara_Idle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90b1b17f2805e1c4990747dcee30fd08
+    m_Address: Character_Cat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba5141f92f0a5734da66978466980c74
+    m_Address: Character_Capybara
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbe69a44a7b90fe448e1ee557ee197bf
+    m_Address: Character_Dog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Image
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 44c8d982bf390a949912fab62f075e84, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f5bf08a94710f5847930daac54bbc717, type: 2}
+    - {fileID: 11400000, guid: b0c3ef1bd11573341b17363d1be34bdd, type: 2}

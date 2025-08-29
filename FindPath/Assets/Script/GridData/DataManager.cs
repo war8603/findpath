@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameUtilities;
@@ -5,6 +6,8 @@ using Managers;
 using UnityEngine;
 using VContainer;
 using Newtonsoft.Json;
+using UniRx;
+using Random = UnityEngine.Random;
 
 namespace FindPath
 {
@@ -21,6 +24,10 @@ namespace FindPath
         private GridDataAsset _gridDataAsset;
         private DifficultyDataConfig _difficultyDataConfig;
         private List<StageClearData> _stageClearData;
+        
+        // 현재 캐릭터 테마
+        private readonly Dictionary<CharacterType, bool> _ownedCharacters = new();
+        public ReactiveProperty<CharacterType> CurrentCharacterType = new(CharacterType.Cat);
 
         public void InitManager()
         {
@@ -31,6 +38,60 @@ namespace FindPath
             }
 
             LoadStageClearData();
+            LoadOwnedCharacters();
+            LoadCurrentCharacterType();
+        }
+
+        /// <summary>
+        /// 캐릭터 보유정보 로드
+        /// </summary>
+        private void LoadOwnedCharacters()
+        {
+            _ownedCharacters.Add(CharacterType.Cat, true);
+            foreach (CharacterType characterType in Enum.GetValues(typeof(CharacterType)))
+            {
+                if (_ownedCharacters.ContainsKey(characterType)) continue;
+                _ownedCharacters.Add(characterType, PlayerPrefsTool.GetPlayerPrefs(characterType.ToString(), false));
+            }
+        }
+
+        /// <summary>
+        /// 현재 캐릭터 타입 로드
+        /// </summary>
+        private void LoadCurrentCharacterType()
+        {
+            CurrentCharacterType.Value =
+                PlayerPrefsTool.GetPlayerPrefs(PlayerPrefsKeyNames.CurrentCharacterType, CharacterType.Cat);
+        }
+
+        /// <summary>
+        /// 해당 캐릭터 타입을 보유했는지 여부 리턴
+        /// </summary>
+        /// <param name="characterType"></param>
+        /// <returns></returns>
+        public bool IsOwnedCharacter(CharacterType characterType)
+        {
+            if (_ownedCharacters.TryGetValue(characterType, out var isOwned))
+            {
+                return isOwned;
+            }
+
+            isOwned = PlayerPrefsTool.GetPlayerPrefs(characterType.ToString(), false);
+            _ownedCharacters.Add(characterType, isOwned);
+            return isOwned;
+        }
+
+        public void SetCurrentCharacterType(CharacterType characterType)
+        {
+            if (characterType == CurrentCharacterType.Value) return;
+            CurrentCharacterType.Value = characterType;
+            PlayerPrefsTool.SetPlayerPrefs(PlayerPrefsKeyNames.CurrentCharacterType, characterType);
+        }
+
+        public void OnPurchaseCharacter(CharacterType characterType)
+        {
+            _ownedCharacters[characterType] = true;
+            PlayerPrefsTool.SetPlayerPrefs(characterType.ToString(), true);
         }
 
         public int GetClearCount(int gridIndex)

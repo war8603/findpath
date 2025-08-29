@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27c920e9b4315cf44a04e92b0646fd05
+    m_Address: UIChangeCharacterItemView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 417030d768e7a614a8e9191e5544e266
     m_Address: UIBattleView
     m_ReadOnly: 0
@@ -53,6 +59,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4d2697b11b5c4543b4596194ecde243
     m_Address: UICollectionCellRowItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8d8086b02f90c1418b65fc75632a2f0
+    m_Address: UIChangeCharacterView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI

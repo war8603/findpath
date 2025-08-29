@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingList:
   - {fileID: 11400000, guid: 630f73a431a62cd419ff59113794587b, type: 2}
+  - {fileID: 11400000, guid: 45bd9a2fe92485f4e8ae85e48a259ec6, type: 2}
   - {fileID: 11400000, guid: 99d5a8b59a480754f984b52d6c3c775f, type: 2}
+  - {fileID: 11400000, guid: 991e4355ca5623e42995f03e5d868c72, type: 2}
   ShowImportProgressBar: 1

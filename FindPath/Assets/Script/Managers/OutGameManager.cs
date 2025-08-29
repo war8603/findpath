@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using Extensions;
 using FindPath;
+using UniRx;
 using UnityEngine;
 using VContainer;
 
@@ -12,6 +14,7 @@ namespace Managers
         [Inject] private readonly UIManager _uiManager;
         [Inject] private readonly SoundManager _soundManager;
         [Inject] private readonly AssetManager _assetManager;
+        [Inject] private readonly DataManager _dataManager;
         
         private GameObject _outGameRoot;
         private static readonly Vector2Int LeftBottomPosition = new Vector2Int(-2, -2);
@@ -61,6 +64,9 @@ namespace Managers
             Destroy(_outGameRoot);
         }
 
+        /// <summary>
+        /// 로비 캐릭터 생성
+        /// </summary>
         private void CreateCharacter()
         {
             if (_character != null)
@@ -68,7 +74,17 @@ namespace Managers
                 DestroyCharacter();
             }
             _character = _objectPool.GetGameObject(ObjectNames.OutCharacterPrefabName);
+            
+            // 캐릭터 위치 초기화
             _character.transform.position = Vector3.zero;
+            
+            // 캐릭터 타입 지정
+            var character = _character.GetComponent<OutCharacter>();
+            character.Init(_dataManager.CurrentCharacterType.Value);
+             _dataManager.CurrentCharacterType.ObserveEveryValueChanged(property => property.Value).Subscribe(value =>
+             {
+                 character.SetCharacterType(value);
+             }).AddTo(this);
         }
 
         private void PlayBGM()
@@ -104,7 +120,8 @@ namespace Managers
         {
             if (_character == null) return;
             
-            Destroy(_character);   
+            _objectPool.ReleaseGameObject(_character);
+            _character = null;
         }
 
         private async UniTaskVoid CreateUIView()

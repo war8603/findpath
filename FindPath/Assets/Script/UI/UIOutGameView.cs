@@ -22,6 +22,7 @@ namespace FindPath
         [SerializeField] private Button _libraryButton;
         [SerializeField] private Button _removeAdsButton;
         [SerializeField] private Button _restoreButton;
+        [SerializeField] private Button _changeCharacterButton;
 
         private void Awake()
         {
@@ -30,7 +31,8 @@ namespace FindPath
             
             _libraryButton.onClick.AddListener(OnClickLibraryButton);
             _removeAdsButton.onClick.AddListener(OnClickRemoveAdsButton);
-            _restoreButton.onClick.AddListener(OnClickRestoreButton);            
+            _restoreButton.onClick.AddListener(OnClickRestoreButton);
+            _changeCharacterButton.onClick.AddListener(() => OnClickChangeCharacterButton().Forget());
         }
 
         [Inject]
@@ -71,6 +73,12 @@ namespace FindPath
         private void OnClickRestoreButton()
         {
             _iapManager.RestorePurchases();
+        }
+
+        private async UniTask OnClickChangeCharacterButton()
+        {
+            var view = await _uiManager.CreateView<UIChangeCharacterView>(UIViewNames.UIChangeCharacterView);
+            view.SetData();
         }
     }
 }

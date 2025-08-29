@@ -150,13 +150,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dotCharacter_0
+      name: Character_Cat_Run_0
       rect:
         serializedVersion: 2
         x: 60
-        y: 639
-        width: 285
-        height: 218
+        y: 624
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_1
+      name: Character_Cat_Run_1
       rect:
         serializedVersion: 2
-        x: 372
+        x: 368
         y: 624
         width: 284
         height: 228
@@ -194,13 +194,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_2
+      name: Character_Cat_Run_2
       rect:
         serializedVersion: 2
         x: 683
         y: 624
-        width: 269
-        height: 232
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,13 +216,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_3
+      name: Character_Cat_Run_3
       rect:
         serializedVersion: 2
         x: 72
-        y: 368
-        width: 272
-        height: 216
+        y: 356
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,12 +238,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_4
+      name: Character_Cat_Run_4
       rect:
         serializedVersion: 2
         x: 376
         y: 356
-        width: 276
+        width: 284
         height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -260,12 +260,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_5
+      name: Character_Cat_Run_5
       rect:
         serializedVersion: 2
         x: 684
         y: 356
-        width: 268
+        width: 284
         height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -282,13 +282,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_6
+      name: Character_Cat_Run_6
       rect:
         serializedVersion: 2
         x: 72
-        y: 96
-        width: 271
-        height: 220
+        y: 98
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,13 +304,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_7
+      name: Character_Cat_Run_7
       rect:
         serializedVersion: 2
         x: 376
-        y: 112
-        width: 276
-        height: 203
+        y: 98
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,13 +326,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dotCharacter_8
+      name: Character_Cat_Run_8
       rect:
         serializedVersion: 2
         x: 680
         y: 98
-        width: 272
-        height: 218
+        width: 284
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,15 +361,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dotCharacter_0: 7512252774311626309
-      dotCharacter_1: -4745929090894240406
-      dotCharacter_2: 6765164596931511570
-      dotCharacter_3: 7994382665931438323
-      dotCharacter_4: 5825582293576510455
-      dotCharacter_5: -5727108046503909426
-      dotCharacter_6: 2015607398717489420
-      dotCharacter_7: 1734837554315899787
-      dotCharacter_8: 1866576050530186766
+      Character_Cat_Run_0: 7512252774311626309
+      Character_Cat_Run_1: -4745929090894240406
+      Character_Cat_Run_2: 6765164596931511570
+      Character_Cat_Run_3: 7994382665931438323
+      Character_Cat_Run_4: 5825582293576510455
+      Character_Cat_Run_5: -5727108046503909426
+      Character_Cat_Run_6: 2015607398717489420
+      Character_Cat_Run_7: 1734837554315899787
+      Character_Cat_Run_8: 1866576050530186766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

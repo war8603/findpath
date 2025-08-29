@@ -52,7 +52,9 @@ public class CustomObjectPool : MonoBehaviour, IBaseManager
     {
         if (!_objectRoot.TryGetValue(objName, out var root))
         {
-            _objectRoot.Add(objName, root = new GameObject(objName + "Root").transform);
+            var newRoot = new GameObject(objName + "Root");
+            newRoot.transform.SetParent(transform);
+            _objectRoot.Add(objName, newRoot.transform);
         }
         
         return root;

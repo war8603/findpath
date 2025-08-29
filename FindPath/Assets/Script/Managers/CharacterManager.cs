@@ -6,6 +6,8 @@ namespace FindPath
     public class CharacterManager
     {
         [Inject] private readonly CustomObjectPool _objectPool;
+        [Inject] private readonly DataManager _dataManager;
+        
         private Character _character;
         
         public void Init()
@@ -38,6 +40,7 @@ namespace FindPath
             }
             
             _character = character;
+            _character.SetCharacterType(_dataManager.CurrentCharacterType.Value);
         }
 
         public void SetStartPosition(Vector2Int position)

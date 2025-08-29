@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Managers;
 using UnityEngine;
 using VContainer;
 
@@ -6,6 +7,8 @@ namespace FindPath
 {
     public class Character : MonoBehaviour
     {
+        [Inject] private readonly AssetManager _assetManager;
+        
         private static readonly int Run = Animator.StringToHash("run");
 
         private enum MoveType
@@ -34,6 +37,13 @@ namespace FindPath
         public void SetStartPosition(Vector2 position)
         {
             transform.position = position;
+        }
+        
+        public void SetCharacterType(CharacterType characterType)
+        {
+            _spriteRenderer.sprite = _assetManager.LoadSprite(DataConfig.GetCharacterIdleName(characterType));
+            _animator.runtimeAnimatorController =
+                _assetManager.LoadAnimator(DataConfig.GetCharacterAnimatorName(characterType));
         }
 
         public void Update()

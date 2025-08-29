@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
+using FindPath;
 using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Managers
 {
-    public class AdsManager : IBaseManager
+    public class AdsManager : MonoBehaviour, IBaseManager
     {
         // 배너 광고
         private string _bannerAdUnitId = "ca-app-pub-3940256099942544/6300978111";
@@ -22,10 +23,34 @@ namespace Managers
         
         private UniTaskCompletionSource _taskCompletionSource;
 
+        private SafeAreaFitter _safeAreaFitter;
+        private SafeAreaFitter Fitter => _safeAreaFitter ??= ResolveFitter();
+
+        private SafeAreaFitter ResolveFitter()
+        {
+            var go = GameObject.FindGameObjectWithTag(TagNames.MainCanvas);
+            if (!go) return null;
+            return go.GetComponent<SafeAreaFitter>() 
+                   ?? go.GetComponentInChildren<SafeAreaFitter>(true);
+        }
+        
+        private void ApplyBannerBottomInset()
+        {
+            var h = _bannerView.GetHeightInPixels();   // float
+            var bannerPx = Mathf.Clamp(Mathf.CeilToInt(h), 0, Screen.height);
+            Fitter?.SetReservedInsets(0, 0, 0, bannerPx);
+        }
+        
         public void InitManager()
         {
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
+            RegistSafeAreaFitter();
             Init().Forget();
+        }
+
+        private void RegistSafeAreaFitter()
+        {
+            
         }
 
         private async UniTask Init()
@@ -52,13 +77,15 @@ namespace Managers
 #region BannerView
         private void LoadBannerAd()
         {
-            if (_bannerView == null)
-            {
-                // 배너 뷰 생성
-                CreateBannerView();
-            }
+            // 배너 뷰 생성
+            CreateBannerView();
 
             if (_bannerView == null) return;
+            
+            _bannerView.OnBannerAdLoaded += () =>
+            {
+                ApplyBannerBottomInset();
+            };
             
             var adRequest = new AdRequest();
             _bannerView.LoadAd(adRequest);

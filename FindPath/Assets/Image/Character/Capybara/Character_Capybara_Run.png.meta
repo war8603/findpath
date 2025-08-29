@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 7ce011278f5842245aaa9fc647c6b518
+guid: a7b67b0567326dc45b81bb799f03ae6d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7512252774311626309
-    second: dotCharacter_0
+      213: 1069143592108139123
+    second: Character_Capybara_Run_0
   - first:
-      213: -4745929090894240406
-    second: dotCharacter_1
+      213: 3451843227204881108
+    second: Character_Capybara_Run_1
   - first:
-      213: 6765164596931511570
-    second: dotCharacter_2
+      213: -6045603021288939429
+    second: Character_Capybara_Run_2
   - first:
-      213: 7994382665931438323
-    second: dotCharacter_3
+      213: 8358159477507592929
+    second: Character_Capybara_Run_3
   - first:
-      213: 5825582293576510455
-    second: dotCharacter_4
+      213: 9111617051557298821
+    second: Character_Capybara_Run_4
   - first:
-      213: -5727108046503909426
-    second: dotCharacter_5
+      213: 6596276099636259399
+    second: Character_Capybara_Run_5
+  - first:
+      213: -3797893116047944100
+    second: Character_Capybara_Run_6
+  - first:
+      213: -1382526455953359046
+    second: Character_Capybara_Run_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,123 +147,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dotCharacter_0
+      name: Character_Capybara_Run_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 604
-        width: 232
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54689cbb812e04860800000000000000
-      internalID: 7512252774311626309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dotCharacter_1
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 604
-        width: 240
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a656e0803a2132eb0800000000000000
-      internalID: -4745929090894240406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dotCharacter_2
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 604
-        width: 256
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 215c6278b51b2ed50800000000000000
-      internalID: 6765164596931511570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dotCharacter_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 240
-        width: 260
-        height: 208
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f83269bda0c1fe60800000000000000
-      internalID: 7994382665931438323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dotCharacter_4
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 240
-        width: 244
-        height: 208
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7fbee621b30a8d050800000000000000
-      internalID: 5825582293576510455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dotCharacter_5
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 240
+        x: 5
+        y: 536
         width: 264
-        height: 208
+        height: 227
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,8 +162,162 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec76ad143993580b0800000000000000
-      internalID: -5727108046503909426
+      spriteID: 372ad75be6c56de00800000000000000
+      internalID: 1069143592108139123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_1
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 536
+        width: 236
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4da82e1602967ef20800000000000000
+      internalID: 3451843227204881108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_2
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 536
+        width: 250
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b506b074514b91ca0800000000000000
+      internalID: -6045603021288939429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_3
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 536
+        width: 253
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e297e8e2c52ef370800000000000000
+      internalID: 8358159477507592929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 271
+        width: 259
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5820777de67f27e70800000000000000
+      internalID: 9111617051557298821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_5
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 272
+        width: 240
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ae73ff92eaa8b50800000000000000
+      internalID: 6596276099636259399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_6
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 272
+        width: 253
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c569f03455c2b4bc0800000000000000
+      internalID: -3797893116047944100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Capybara_Run_7
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 272
+        width: 256
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3ff154638740dce0800000000000000
+      internalID: -1382526455953359046
       vertices: []
       indices: 
       edges: []
@@ -276,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0be428cd312fb5143a833483d52c47e7
+    spriteID: 8df06297a1315a3478ea13d9df08709f
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dotCharacter_0: 7512252774311626309
-      dotCharacter_1: -4745929090894240406
-      dotCharacter_2: 6765164596931511570
-      dotCharacter_3: 7994382665931438323
-      dotCharacter_4: 5825582293576510455
-      dotCharacter_5: -5727108046503909426
+      Character_Capybara_Run_0: 1069143592108139123
+      Character_Capybara_Run_1: 3451843227204881108
+      Character_Capybara_Run_2: -6045603021288939429
+      Character_Capybara_Run_3: 8358159477507592929
+      Character_Capybara_Run_4: 9111617051557298821
+      Character_Capybara_Run_5: 6596276099636259399
+      Character_Capybara_Run_6: -3797893116047944100
+      Character_Capybara_Run_7: -1382526455953359046
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,6 +11,8 @@ namespace Managers
         private readonly Dictionary<string, AsyncOperationHandle<GameObject>> _objectHandles = new();
         private readonly Dictionary<string, AsyncOperationHandle<ScriptableObject>> _scriptableObjectHandles = new();
         private readonly Dictionary<string, AsyncOperationHandle<AudioClip>> _audioClipHandles = new();
+        private readonly Dictionary<string, AsyncOperationHandle<Sprite>> _spriteHandles = new();
+        private readonly Dictionary<string, AsyncOperationHandle<RuntimeAnimatorController>> _animatorHandles = new();
         
         public void InitManager()
         {
@@ -65,6 +67,30 @@ namespace Managers
         {
             handle.WaitForCompletion();
             return (T)handle.Result;
+        }
+
+        public Sprite LoadSprite(string name)
+        {
+            if (_spriteHandles.TryGetValue(name, out var handle))
+            {
+                return LoadAsset<Sprite>(handle);
+            }
+
+            handle = Addressables.LoadAssetAsync<Sprite>(name);
+            _spriteHandles.Add(name, handle);
+            return LoadAsset<Sprite>(handle);
+        }
+
+        public RuntimeAnimatorController LoadAnimator(string name)
+        {
+            if (_animatorHandles.TryGetValue(name, out var handle))
+            {
+                return LoadAsset<RuntimeAnimatorController>(handle);
+            }
+
+            handle = Addressables.LoadAssetAsync<RuntimeAnimatorController>(name);
+            _animatorHandles.Add(name, handle);
+            return LoadAsset<RuntimeAnimatorController>(handle);
         }
 
         public AudioClip LoadAudioClip(string name)

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6208eba98a59b5a4daf420ed8494a510
+guid: 644657a045367f840be790f69fff82d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7152930139536384079
-    second: character_0
+      213: 7512252774311626309
+    second: dotCharacter_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character_0
+      name: dotCharacter_0
       rect:
         serializedVersion: 2
-        x: 228
-        y: 268
-        width: 564
-        height: 495
+        x: 0
+        y: 523
+        width: 314
+        height: 466
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4060466010544360800000000000000
-      internalID: 7152930139536384079
+      spriteID: fdf3a5bfc02c25142b666987389a42f3
+      internalID: 7512252774311626309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotCharacter_1
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 523
+        width: 314
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aca6d26a3ff094540b0c4457351a8ea6
+      internalID: -71779443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotCharacter_2
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 523
+        width: 314
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22691233aaa981c448663280e657d1df
+      internalID: 2025662664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotCharacter_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 46
+        width: 314
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d527bcfe7568d0048a50103c7c0fba71
+      internalID: -386279945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotCharacter_4
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 46
+        width: 314
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 553bdda7859f9e749ad912792a2706c5
+      internalID: -1423581309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotCharacter_5
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 46
+        width: 314
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a410ef5e8530e34088fe410efac8c20
+      internalID: 1270639854
       vertices: []
       indices: 
       edges: []
@@ -151,7 +261,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 83316541f0d8f3543bb480298be84f4e
+    spriteID: 776d41654b89c734d8fff7fcd19de322
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +269,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":314.0,"y":501.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      - key: SpriteEditor.SliceOnImport
+        value: False
     nameFileIdTable:
-      character_0: 7152930139536384079
+      dotCharacter_0: 7512252774311626309
+      dotCharacter_1: -71779443
+      dotCharacter_2: 2025662664
+      dotCharacter_3: -386279945
+      dotCharacter_4: -1423581309
+      dotCharacter_5: 1270639854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

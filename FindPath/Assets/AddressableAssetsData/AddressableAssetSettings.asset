@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 2576ea8f3d7e05b46a4c21952e903617
   m_currentHash:
     serializedVersion: 2
-    Hash: 820d70496a86a137c4f086c9163fadb5
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -62,7 +62,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b158ee861d4b0c48b69e638af21f2d3, type: 2}
   - {fileID: 11400000, guid: a5fb9027ddfa50d46a1d99f3c5ef3f32, type: 2}
   - {fileID: 11400000, guid: 719e2dbcddf70ac4880d2af1aa2e941b, type: 2}
+  - {fileID: 11400000, guid: 14951362e4b1d094dab688263f58691e, type: 2}
   - {fileID: 11400000, guid: a1ee641f9c8c0304c8d738a359783418, type: 2}
+  - {fileID: 11400000, guid: ede3d496c60548144addb8eee2407d61, type: 2}
   - {fileID: 11400000, guid: 720e9854830eba84fbfc69c4622ef852, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -107,6 +109,8 @@ MonoBehaviour:
     - Objects
     - GridData
     - Sound
+    - Animation
+    - Image
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 7878fedd84254134ab99d82d6b677f13, type: 2}

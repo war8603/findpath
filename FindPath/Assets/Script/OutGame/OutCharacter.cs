@@ -8,6 +8,7 @@ namespace FindPath
     {
         private static readonly int Run = Animator.StringToHash("run");
         [Inject] private readonly OutGameManager _outGameManager;
+        [Inject] private readonly AssetManager _assetManager;
 
         [SerializeField] private float _walkSpeed;
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -15,16 +16,23 @@ namespace FindPath
         [SerializeField] private Animator _animator;
 
         private Vector2 _direction = new Vector2(1f, 0);
-
-        private void Awake()
-        {
-            ChangeDirection();
-            _animator.SetTrigger(Run);
-        }
-        
         public void Update()
         {
             DoWalk();
+        }
+
+        public void Init(CharacterType characterType)
+        {
+            ChangeDirection();
+            _animator.SetTrigger(Run);
+            SetCharacterType(characterType);
+        }
+        
+        public void SetCharacterType(CharacterType characterType)
+        {
+            _spriteRenderer.sprite = _assetManager.LoadSprite(DataConfig.GetCharacterIdleName(characterType));
+            _animator.runtimeAnimatorController =
+                _assetManager.LoadAnimator(DataConfig.GetCharacterAnimatorName(characterType));
         }
 
         private void DoWalk()

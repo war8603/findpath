@@ -29,8 +29,11 @@ namespace Managers
                 return;
             }
             
+            var root = canvasObj.GetComponent<SafeAreaFitter>() 
+                       ?? canvasObj.GetComponentInChildren<SafeAreaFitter>(true);
+            
             // RectTransform 추가 및 설정 초기화
-            transform.InitParent(canvasObj.transform).AddWithInitFullSizeRectTransform();
+            transform.InitParent(root.transform).AddWithInitFullSizeRectTransform();
             
             // 메인 뷰 루트 생성
             var mainRootObj = new GameObject("Main Root");

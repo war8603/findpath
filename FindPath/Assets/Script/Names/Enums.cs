@@ -21,6 +21,7 @@ namespace FindPath
     {
         Coin,
         Ads,
+        Diamond,
     }
 
     public enum CellType
@@ -35,5 +36,12 @@ namespace FindPath
     {
         BGM,
         SE,
+    }
+
+    public enum CharacterType
+    {
+        Cat,
+        Dog,
+        Capybara,
     }
 }
